@@ -104,7 +104,7 @@ PrefabInstance:
     - target: {fileID: 7060277219435553628, guid: dd5923067844f0441985a3750645add0,
         type: 3}
       propertyPath: m_Name
-      value: PostFX
+      value: PFX
       objectReference: {fileID: 0}
     - target: {fileID: 7060277219435553629, guid: dd5923067844f0441985a3750645add0,
         type: 3}
@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 7966845475417345478, guid: 8c3f204a2a1b84c40aafaca9b23141a3,
         type: 3}
       propertyPath: m_Name
-      value: PostFX Modifier Beautify
+      value: PFX Beautify
       objectReference: {fileID: 0}
     - target: {fileID: 8775554961819868799, guid: 8c3f204a2a1b84c40aafaca9b23141a3,
         type: 3}
@@ -205,7 +205,7 @@ PrefabInstance:
     - target: {fileID: 7777028490019292929, guid: 6baadb4f293c10e40a28af39c7e0fd5d,
         type: 3}
       propertyPath: m_Name
-      value: PostFX Modifier SCPE
+      value: PFX SCPE
       objectReference: {fileID: 0}
     - target: {fileID: 7777028490019292931, guid: 6baadb4f293c10e40a28af39c7e0fd5d,
         type: 3}
