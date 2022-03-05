@@ -101,6 +101,7 @@ Thumbs.db
 !/Assets/_Custom
 !/Assets/_Sandbox
 !/Assets/_Shared
+!/Assets/_Project
 !/Assets/_Projects
 !/Assets/Gizmos
 
@@ -117,8 +118,3 @@ Thumbs.db
 /Assets/Plugins/Sirenix/Demos/*
 # But keep the demo packages themselves.
 # !/Assets/Plugins/Sirenix/Demos/*.unitypackage
-### ASSET GAIA ###
-!/Assets/Gaia User Data/
-# large sessions
-Assets/Gaia User Data/Sessions/GS-20211005 - 015354/
-Assets/Gaia User Data/Sessions/GS-20211013 - 081536/
