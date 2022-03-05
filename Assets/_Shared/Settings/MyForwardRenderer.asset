@@ -322,7 +322,7 @@ MonoBehaviour:
       type: 3}
   m_RendererFeatures:
   - {fileID: 3075354231182545811}
-  - {fileID: 733416281454808313}
+  - {fileID: 0}
   - {fileID: -1461135545484695636}
   - {fileID: -8665283929704873317}
   - {fileID: 9160761384886556610}
@@ -597,6 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   shader: {fileID: 4800000, guid: 55d70ca4ea7504a38b66170bbe587b2f, type: 3}
+  renderPassEvent: 500
 --- !u!114 &4510699357817930167
 MonoBehaviour:
   m_ObjectHideFlags: 0
