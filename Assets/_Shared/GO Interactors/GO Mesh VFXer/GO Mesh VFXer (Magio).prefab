@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1747565660609100023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747565660609100021}
+  - component: {fileID: 1747565660609100020}
+  m_Layer: 0
+  m_Name: GO Mesh VFXer (Magio)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1747565660609100021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747565660609100023}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1747565660609100020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747565660609100023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2ca106a54ec744389440d1cc4d1104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentEffect: {fileID: 5419711215357101224, guid: 715211c96fa7b1641bfd531bc286ae7e,
+    type: 3}
+  _effectPrefabs:
+  - {fileID: 787276874812393011, guid: 2e1a2cf77e96bf048a67f850c14c4e92, type: 3}
+  - {fileID: 7342935447848270736, guid: 1d0e184c04d73f0488fe439174b86955, type: 3}
+  - {fileID: 4782179190336078180, guid: 2d0dce5eed485ef4d896e208252cac30, type: 3}
+  - {fileID: 5419711215357101224, guid: 715211c96fa7b1641bfd531bc286ae7e, type: 3}
+  - {fileID: 2566524134972811270, guid: 6dfb852a8bd10614ba73e2ef5f1135cb, type: 3}
+  - {fileID: 5620264371571872467, guid: 5831e21e88b78964ca1e79328cb4779c, type: 3}
