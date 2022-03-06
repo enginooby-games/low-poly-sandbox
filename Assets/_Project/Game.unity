@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animancer: {fileID: 2019156853}
-  _clip: {fileID: 7400000, guid: e6be78c67ed2e31439200bc8843b3a05, type: 3}
+  _clip: {fileID: 7400000, guid: f3597fbbc3a05d8449dd9cdabfecba15, type: 3}
   _idleClip: {fileID: 7400000, guid: 6786b74627233234ab8360a32f041bef, type: 3}
   _triggerKey: 103
 --- !u!114 &2019156853
