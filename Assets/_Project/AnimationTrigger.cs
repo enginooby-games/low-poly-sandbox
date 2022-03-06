@@ -9,6 +9,7 @@ using UnityEngine;
 /// <summary>
 /// Play serialized any animation clip without setup in the animator.
 /// </summary>
+[CommandPrefix("a.")]
 public class AnimationTrigger : MonoBehaviour {
   // ClipTransition: wrapper for AnimationClip to serialize params in Inspector
   [SerializeField] private ClipTransition _waveClip;
@@ -22,7 +23,6 @@ public class AnimationTrigger : MonoBehaviour {
   private AnimationClip _lastClip;
   private AnimationClip RestoreClip => _lastClip ? _lastClip : _idleClip;
   private bool _isActionPlaying;
-  private const string CommandPrefix = "a.";
 
   private void Update() {
     if (_waveTriggerKey.IsDown()) {
@@ -30,10 +30,10 @@ public class AnimationTrigger : MonoBehaviour {
     }
   }
 
-  [Command(CommandPrefix +nameof(Wave))]
+  [Command(nameof(Wave))]
   private void Wave() => TriggerAnimation(_waveClip);
   
-  [Command(CommandPrefix +nameof(Dance))]
+  [Command(nameof(Dance))]
   private void Dance() => TriggerAnimation(_danceClip);
 
   private void TriggerAnimation(ITransition actionClip) {
