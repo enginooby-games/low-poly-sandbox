@@ -1055,6 +1055,7 @@ GameObject:
   - component: {fileID: 4083186353598118533}
   - component: {fileID: 4083539454363240591}
   - component: {fileID: 1205071033131623096}
+  - component: {fileID: 763540271}
   m_Layer: 5
   m_Name: Console
   m_TagString: Untagged
@@ -1109,7 +1110,7 @@ MonoBehaviour:
   _keyConfig: {fileID: 11400000, guid: a27a1f79cedae36488b4aa85357d4f59, type: 2}
   _verboseErrors: 0
   _verboseLogging: 0
-  _loggingLevel: 4
+  _loggingLevel: 0
   _openOnLogLevel: 0
   _interceptDebugLogger: 1
   _interceptWhilstInactive: 1
@@ -1233,6 +1234,20 @@ MonoBehaviour:
   _scaler: {fileID: 4083186353598118533}
   _uiRoot: {fileID: 4189204048187048641}
   _referenceResolution: {x: 1920, y: 1080}
+--- !u!114 &763540271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4123590275295131121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74dac3a9dd01ef04eb4183e59bf5687e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disableOnConsoleActive:
+  - {fileID: 0}
 --- !u!1 &4123592982245768591
 GameObject:
   m_ObjectHideFlags: 0
