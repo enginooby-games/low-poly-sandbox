@@ -1,10 +1,15 @@
-using Animancer;
+#if ASSET_QUANTUM_CONSOLE
 using QFSW.QC;
+#else
+using Enginooby.Attribute;
+#endif
+
+using Animancer;
 using UnityEngine;
 
 // REFACTOR: Add directive and wrapper for Animancer
 // + Prioritize the player controller, abandon current clip (fade in) whenever using controller
-// Wrapper for action clip, trigger key, etc
+// + Wrapper for action clip, trigger key, etc
 
 /// <summary>
 /// Play serialized any animation clip without setup in the animator.

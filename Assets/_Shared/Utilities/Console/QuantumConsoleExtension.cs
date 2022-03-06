@@ -1,3 +1,4 @@
+#if ASSET_QUANTUM_CONSOLE
 using System.Collections.Generic;
 using System.Linq;
 using QFSW.QC;
@@ -33,3 +34,4 @@ public class QuantumConsoleExtension : MonoBehaviour {
     }
   }
 }
+#endif
