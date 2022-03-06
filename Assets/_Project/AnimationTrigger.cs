@@ -1,49 +1,64 @@
 using Animancer;
+using QFSW.QC;
 using UnityEngine;
 
 // REFACTOR: Add directive and wrapper for Animancer
 // + Prioritize the player controller, abandon current clip (fade in) whenever using controller
+// Wrapper for action clip, trigger key, etc
 
 /// <summary>
 /// Play serialized any animation clip without setup in the animator.
 /// </summary>
 public class AnimationTrigger : MonoBehaviour {
-  [SerializeField] private AnimancerComponent _animancer;
   // ClipTransition: wrapper for AnimationClip to serialize params in Inspector
-  [SerializeField] private ClipTransition _actionClip;
+  [SerializeField] private ClipTransition _waveClip;
+  [SerializeField] private KeyCode _waveTriggerKey;
+  [SerializeField] private ClipTransition _danceClip;
+  
+  [SerializeField] private AnimancerComponent _animancer;
   [SerializeField] private AnimationClip _idleClip;
-  [SerializeField] private KeyCode _triggerKey;
 
   // the playing clip before trigger action clip
   private AnimationClip _lastClip;
   private AnimationClip RestoreClip => _lastClip ? _lastClip : _idleClip;
   private bool _isActionPlaying;
+  private const string CommandPrefix = "a.";
 
   private void Update() {
-    if (_triggerKey.IsDown()) {
-      _animancer.enabled = true;
-      
-      if (_isActionPlaying) {
-        PlayAction();
-      }
-      else {
-        _lastClip = _animancer.Animator.GetCurrentAnimatorClipInfo(0)[0].clip;
-        PlayActionFromLastClip();
-      }
+    if (_waveTriggerKey.IsDown()) {
+     Wave();
+    }
+  }
+
+  [Command(CommandPrefix +nameof(Wave))]
+  private void Wave() => TriggerAnimation(_waveClip);
+  
+  [Command(CommandPrefix +nameof(Dance))]
+  private void Dance() => TriggerAnimation(_danceClip);
+
+  private void TriggerAnimation(ITransition actionClip) {
+    _animancer.enabled = true;
+
+    if (_isActionPlaying) {
+      PlayAction(actionClip);
+    }
+    else {
+      _lastClip = _animancer.Animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+      PlayActionFromLastClip(actionClip);
     }
   }
 
   // TODO: Find better solution - replace idle with the current playing animation
   // So that it doesn't snap straight into the main action (suddenly play)
-  private void PlayActionFromLastClip() {
+  private void PlayActionFromLastClip(ITransition actionClip) {
     var state = _animancer.Play(RestoreClip, .1f, FadeMode.FromStart);
     state.Time = RestoreClip.length - .5f; // play only last .1s 
-    state.Events.OnEnd = PlayAction;
+    state.Events.OnEnd = () => PlayAction(actionClip);
   }
 
-  private void PlayAction() {
+  private void PlayAction(ITransition actionClip) {
     _isActionPlaying = true;
-    var actionState = _animancer.Play(_actionClip, 0.25f, FadeMode.FromStart);
+    var actionState = _animancer.Play(actionClip, 0.25f, FadeMode.FromStart);
     // ether set Time or use FadeMode.FromStart
     // to play from beginning (animation will reset if trigger key during playing)
     // state.Time = 0; 
