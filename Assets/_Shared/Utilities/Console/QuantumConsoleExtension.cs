@@ -28,7 +28,7 @@ public class QuantumConsoleExtension : MonoBehaviour {
       FindObjectsOfType<Opsive.UltimateCharacterController.Character.UltimateCharacterLocomotionHandler>());
 #endif
 
-#if MOREMOUNTAINS_TOPDOWNENGINE
+#if ASSET_GAME_CREATOR
     _disableOnConsoleActive.AddRange(FindObjectsOfType<GameCreator.Runtime.Characters.Character>());
 #endif
     
