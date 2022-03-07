@@ -410,6 +410,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701068993677157636, guid: 67f98003d6980bf43bb3cc80d930139b,
         type: 3}
+      propertyPath: m_Footsteps.m_FootstepSounds.m_SoundsAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f22790c8b04e44378551f6e60b19fa3,
+        type: 2}
+    - target: {fileID: 2701068993677157636, guid: 67f98003d6980bf43bb3cc80d930139b,
+        type: 3}
       propertyPath: managedReferences[5069256750100381709].m_Path
       value: 
       objectReference: {fileID: 0}
@@ -526,12 +532,12 @@ PrefabInstance:
     - target: {fileID: 2701068993677157636, guid: 67f98003d6980bf43bb3cc80d930139b,
         type: 3}
       propertyPath: managedReferences[5735540285216915456].m_IsExpanded
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2701068993677157636, guid: 67f98003d6980bf43bb3cc80d930139b,
         type: 3}
       propertyPath: managedReferences[5735540285216915457].m_IsExpanded
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2701068993677157636, guid: 67f98003d6980bf43bb3cc80d930139b,
         type: 3}
@@ -901,7 +907,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 89b363d6eafb0394981948b6971f864e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
