@@ -238,6 +238,54 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &165313886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5289743268377336459, guid: 67f98003d6980bf43bb3cc80d930139b,
+    type: 3}
+  m_PrefabInstance: {fileID: 183052300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &165313889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165313886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe2b16044a04efba6795e323236dc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SaveUniqueID:
+    m_Save:
+      m_Save: 1
+    m_UniqueID:
+      m_SerializedID:
+        m_String: e58ed5bd-4115-4b56-b009-17817c98624c
+  m_Runtime:
+    m_List:
+      m_Source:
+      - rid: 5069256750878687234
+  references:
+    version: 2
+    RefIds:
+    - rid: 5069256750878687234
+      type: {class: NameVariable, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 1
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Value:
+          rid: 5069256750878687236
+        m_Name:
+          m_String: health
+    - rid: 5069256750878687236
+      type: {class: ValueNumber, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 1
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Value: 69
 --- !u!1001 &183052300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -713,6 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
+    - rid: 5069256750878687252
     - rid: 5069256750100381746
     - rid: 5069256750100381752
     - rid: 5069256750100381750
@@ -724,7 +773,7 @@ MonoBehaviour:
       type: {class: InstructionCharacterStartRagdoll, ns: GameCreator.Runtime.VisualScripting,
         asm: GameCreator.Runtime.Core}
       data:
-        m_IsExpanded: 1
+        m_IsExpanded: 0
         m_Breakpoint: 0
         m_IsEnabled: 1
         m_Character:
@@ -736,7 +785,7 @@ MonoBehaviour:
       type: {class: InstructionCharacterRecoverRagdoll, ns: GameCreator.Runtime.VisualScripting,
         asm: GameCreator.Runtime.Core}
       data:
-        m_IsExpanded: 1
+        m_IsExpanded: 0
         m_Breakpoint: 0
         m_IsEnabled: 1
         m_Character:
@@ -748,7 +797,7 @@ MonoBehaviour:
       type: {class: InstructionCommonTimeWait, ns: GameCreator.Runtime.VisualScripting,
         asm: GameCreator.Runtime.Core}
       data:
-        m_IsExpanded: 1
+        m_IsExpanded: 0
         m_Breakpoint: 0
         m_IsEnabled: 1
         m_Seconds:
@@ -758,6 +807,33 @@ MonoBehaviour:
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 2
+    - rid: 5069256750878687252
+      type: {class: InstructionArithmeticSetNumber, ns: GameCreator.Runtime.VisualScripting,
+        asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 0
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Set:
+          m_Property:
+            rid: 5069256750878687255
+        m_From:
+          m_Property:
+            rid: 5069256750878687254
+    - rid: 5069256750878687254
+      type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Value: 0
+    - rid: 5069256750878687255
+      type: {class: SetNumberLocalName, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_Variable:
+          m_TypeID:
+            m_String: number
+          m_Variable: {fileID: 165313889}
+          m_Name:
+            m_String: health
+            m_ID: -824564973
 --- !u!4 &754196429
 Transform:
   m_ObjectHideFlags: 0
@@ -885,7 +961,7 @@ GameObject:
   - component: {fileID: 1159127324}
   - component: {fileID: 1159127329}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Hotspot - Restore Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -906,6 +982,7 @@ MonoBehaviour:
   m_Instructions:
     m_Instructions:
     - rid: 5069256750100381767
+    - rid: 5069256750878687243
   m_InBackground: 1
   m_TriggerEvent:
     rid: 5069256750100381765
@@ -950,6 +1027,39 @@ MonoBehaviour:
       data:
         m_Position: 1
         m_Rotation: 0
+    - rid: 5069256750878687243
+      type: {class: InstructionArithmeticSetNumber, ns: GameCreator.Runtime.VisualScripting,
+        asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 0
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Set:
+          m_Property:
+            rid: 5069256750878687246
+        m_From:
+          m_Property:
+            rid: 5069256750878687247
+    - rid: 5069256750878687246
+      type: {class: SetNumberLocalName, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_Variable:
+          m_TypeID:
+            m_String: number
+          m_Variable: {fileID: 165313889}
+          m_Name:
+            m_String: health
+            m_ID: -824564973
+    - rid: 5069256750878687247
+      type: {class: GetDecimalGlobalName, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_Variable:
+          m_TypeID:
+            m_String: number
+          m_Variable: {fileID: 11400000, guid: 20050e2b703f79449bb49cfb45ce63d7, type: 2}
+          m_Name:
+            m_String: full-health
+            m_ID: 803716835
 --- !u!135 &1159127325
 SphereCollider:
   m_ObjectHideFlags: 0
