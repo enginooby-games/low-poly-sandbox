@@ -20,18 +20,31 @@ public class AnimationTrigger : MonoBehaviour {
   [SerializeField] private ClipTransition _waveClip;
   [SerializeField] private KeyCode _waveTriggerKey;
   [SerializeField] private ClipTransition _danceClip;
-  
-  [SerializeField] private AnimancerComponent _animancer;
   [SerializeField] private AnimationClip _idleClip;
 
+  private AnimancerComponent _animancer;
   // the playing clip before trigger action clip
   private AnimationClip _lastClip;
-  private AnimationClip RestoreClip => _lastClip ? _lastClip : _idleClip;
+  // private AnimationClip RestoreClip => _lastClip ? _lastClip : _idleClip;
+  private AnimationClip RestoreClip => _idleClip;
   private bool _isActionPlaying;
 
+  private void Awake() => SetupAnimancerComponent();
+  
+  private void SetupAnimancerComponent() {
+    _animancer = gameObject.TryAddComponent<AnimancerComponent>();
+    _animancer.Animator = GetComponentInChildren<Animator>();
+  }
+  
   private void Update() {
     if (_waveTriggerKey.IsDown()) {
      Wave();
+    }
+
+    // controller regain when input any control key
+    if (KeyCode.W.IsDown() || KeyCode.A.IsDown() || KeyCode.S.IsDown() || KeyCode.D.IsDown() || KeyCode.Space.IsDown()) {
+      // ExitAnimation();
+      DisableAnimancer();
     }
   }
 
@@ -67,10 +80,10 @@ public class AnimationTrigger : MonoBehaviour {
     // ether set Time or use FadeMode.FromStart
     // to play from beginning (animation will reset if trigger key during playing)
     // state.Time = 0; 
-    actionState.Events.OnEnd = RestoreLastClip;
+    actionState.Events.OnEnd = ExitAnimation;
   }
 
-  private void RestoreLastClip() {
+  private void ExitAnimation() {
     _isActionPlaying = false;
     var state = _animancer.Play(RestoreClip, 0.5f);
     state.Time = RestoreClip.length - .5f; 
@@ -78,6 +91,9 @@ public class AnimationTrigger : MonoBehaviour {
   }
 
   // TODO: Find better solution
-  // disable Animancer so that UCC can take over
-  private void DisableAnimancer() => _animancer.enabled = false;
+  // disable Animancer so that controller can take over
+  private void DisableAnimancer() {
+    _isActionPlaying = false;
+    _animancer.enabled = false;
+  }
 }
