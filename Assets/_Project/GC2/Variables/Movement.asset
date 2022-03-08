@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307520f1e07347338fe0f7cef607016a, type: 3}
+  m_Name: Movement
+  m_EditorClassIdentifier: 
+  m_SaveUniqueID:
+    m_Save:
+      m_Save: 1
+    m_UniqueID:
+      m_SerializedID:
+        m_String: 0908e32d-6019-4fa1-8e81-6774ca932d28
+  m_NameList:
+    m_Source:
+    - rid: 5069256772210655413
+    - rid: 5069256772210655416
+  references:
+    version: 2
+    RefIds:
+    - rid: 5069256772210655413
+      type: {class: NameVariable, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 1
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Value:
+          rid: 5069256772210655415
+        m_Name:
+          m_String: dash-force
+    - rid: 5069256772210655415
+      type: {class: ValueNumber, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 1
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Value: 20
+    - rid: 5069256772210655416
+      type: {class: NameVariable, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 1
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Value:
+          rid: 5069256772210655418
+        m_Name:
+          m_String: run-speed
+    - rid: 5069256772210655418
+      type: {class: ValueNumber, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 1
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Value: 13
