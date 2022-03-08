@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - World
   - NoMask
+  - ClingPoint
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Camera2
   - Camera3
   - Camera4
-  - 
+  - DestroyItDebris
   - 
   - 
   - Enemy
