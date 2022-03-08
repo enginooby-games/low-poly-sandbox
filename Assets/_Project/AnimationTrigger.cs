@@ -9,7 +9,7 @@ using UnityEngine;
 
 // REFACTOR: Add directive and wrapper for Animancer
 // + Prioritize the player controller, abandon current clip (fade in) whenever using controller
-// + Wrapper for action clip, trigger key, etc
+// + Wrapper for action clip, trigger key, speech, etc
 
 /// <summary>
 /// Play serialized any animation clip without setup in the animator.
@@ -49,8 +49,11 @@ public class AnimationTrigger : MonoBehaviour {
   }
 
   [Command(nameof(Wave))]
-  private void Wave() => TriggerAnimation(_waveClip);
-  
+  private void Wave() {
+    TriggerAnimation(_waveClip);
+    SpeechManager.Instance.SayByPlayer("Bye bye!");
+  }
+
   [Command(nameof(Dance))]
   private void Dance() => TriggerAnimation(_danceClip);
 
