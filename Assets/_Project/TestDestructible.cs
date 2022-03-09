@@ -12,14 +12,14 @@ public class TestDestructible : MonoBehaviour {
     }
     
     private void OnTriggerEnter(Collider other) {
-        _destructible.ApplyDamage(10f);
+        _destructible.ApplyDamage(5);
     }
 
     private void OnCollisionEnter(Collision collision) {
-        _destructible.ApplyDamage(10f);
+        _destructible.ApplyDamage(5);
     }
 
     private void OnMouseDown() {
-        _destructible.ApplyDamage(10f);
+        _destructible.ApplyDamage(5);
     }
 }
