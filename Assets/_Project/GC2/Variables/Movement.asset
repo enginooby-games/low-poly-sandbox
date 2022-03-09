@@ -22,6 +22,7 @@ MonoBehaviour:
     m_Source:
     - rid: 5069256772210655413
     - rid: 5069256772210655416
+    - rid: 5069256801412972544
   references:
     version: 2
     RefIds:
@@ -58,4 +59,21 @@ MonoBehaviour:
         m_IsExpanded: 1
         m_Breakpoint: 0
         m_IsEnabled: 1
-        m_Value: 13
+        m_Value: 8
+    - rid: 5069256801412972544
+      type: {class: NameVariable, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 1
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Value:
+          rid: 5069256801412972546
+        m_Name:
+          m_String: walk-speed
+    - rid: 5069256801412972546
+      type: {class: ValueNumber, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsExpanded: 1
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Value: 3
