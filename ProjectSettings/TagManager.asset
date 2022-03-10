@@ -10,6 +10,7 @@ TagManager:
   - World
   - NoMask
   - ClingPoint
+  - Companion
   layers:
   - Default
   - TransparentFX

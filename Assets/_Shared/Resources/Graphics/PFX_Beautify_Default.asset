@@ -17,8 +17,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   compareMode:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0
   compareLineAngle:
     m_OverrideState: 1
     m_Value: 1.78
@@ -70,6 +70,9 @@ MonoBehaviour:
   stripBeautifyLensDirt:
     m_OverrideState: 1
     m_Value: 0
+  stripBeautifyChromaticAberration:
+    m_OverrideState: 1
+    m_Value: 0
   stripBeautifyDoF:
     m_OverrideState: 1
     m_Value: 0
@@ -107,6 +110,9 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   stripUnityDistortion:
+    m_OverrideState: 1
+    m_Value: 0
+  stripBeautifyFrame:
     m_OverrideState: 1
     m_Value: 0
   sharpenIntensity:
@@ -276,7 +282,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 10
   sunFlaresIntensity:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.269
   sunFlaresTint:
     m_OverrideState: 1
@@ -394,6 +400,12 @@ MonoBehaviour:
   lensDirtSpread:
     m_OverrideState: 0
     m_Value: 3
+  chromaticAberrationIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+  chromaticAberrationSmoothing:
+    m_OverrideState: 0
+    m_Value: 0
   depthOfField:
     m_OverrideState: 0
     m_Value: 0
@@ -420,12 +432,24 @@ MonoBehaviour:
   depthOfFieldDistance:
     m_OverrideState: 1
     m_Value: 100
+  depthOfFieldCameraSettings:
+    m_OverrideState: 0
+    m_Value: 0
   depthOfFieldFocalLength:
     m_OverrideState: 1
     m_Value: 0.03
   depthOfFieldAperture:
     m_OverrideState: 1
     m_Value: 27.8
+  depthOfFieldFocalLengthReal:
+    m_OverrideState: 0
+    m_Value: 50
+  depthOfFieldFStop:
+    m_OverrideState: 0
+    m_Value: 2
+  depthOfFieldImageSensorHeight:
+    m_OverrideState: 0
+    m_Value: 24
   depthOfFieldFocusSpeed:
     m_OverrideState: 0
     m_Value: 0.001
@@ -437,18 +461,38 @@ MonoBehaviour:
     m_Value:
       serializedVersion: 2
       m_Bits: 1
+  depthOfFieldTransparentDoubleSided:
+    m_OverrideState: 0
+    m_Value: 0
+  depthOfFieldAlphaTestSupport:
+    m_OverrideState: 0
+    m_Value: 0
+  depthOfFieldAlphaTestLayerMask:
+    m_OverrideState: 0
+    m_Value:
+      serializedVersion: 2
+      m_Bits: 1
+  depthOfFieldAlphaTestDoubleSided:
+    m_OverrideState: 0
+    m_Value: 0
   depthOfFieldForegroundBlur:
     m_OverrideState: 1
     m_Value: 1
   depthOfFieldForegroundBlurHQ:
     m_OverrideState: 1
     m_Value: 1
+  depthOfFieldForegroundBlurHQSpread:
+    m_OverrideState: 0
+    m_Value: 4
   depthOfFieldForegroundDistance:
     m_OverrideState: 0
     m_Value: 0.25
   depthOfFieldBokeh:
     m_OverrideState: 1
     m_Value: 1
+  depthOfFieldBokehComposition:
+    m_OverrideState: 0
+    m_Value: 0
   depthOfFieldBokehThreshold:
     m_OverrideState: 0
     m_Value: 1
@@ -533,18 +577,48 @@ MonoBehaviour:
   outlineThreshold:
     m_OverrideState: 1
     m_Value: 0.02
+  outlineCustomize:
+    m_OverrideState: 0
+    m_Value: 0
+  outlineStageParameter:
+    m_OverrideState: 0
+    m_Value: 0
+  outlineSpread:
+    m_OverrideState: 0
+    m_Value: 1
+  outlineBlurPassCount:
+    m_OverrideState: 0
+    m_Value: 1
+  outlineBlurDownscale:
+    m_OverrideState: 0
+    m_Value: 0
+  outlineIntensityMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
   nightVision:
     m_OverrideState: 0
     m_Value: 1
   nightVisionColor:
     m_OverrideState: 0
     m_Value: {r: 0.56981134, g: 1, b: 0.56981134, a: 0.5}
-  blurIntensity:
-    m_OverrideState: 0
-    m_Value: 0.14
   ditherIntensity:
     m_OverrideState: 0
     m_Value: 0.02
+  frame:
+    m_OverrideState: 0
+    m_Value: 0
+  frameColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 0.047}
+  frameMask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  blurIntensity:
+    m_OverrideState: 0
+    m_Value: 0.14
+  blurMask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
