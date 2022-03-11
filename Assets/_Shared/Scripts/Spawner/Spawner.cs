@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Enginooby.Utils;
-#if ASSET_NAUGHTY_ATTRIBUTES
-using NaughtyAttributes;
-#endif
 using UnityEditor;
 using UnityEngine;
 #if ODIN_INSPECTOR
@@ -128,7 +125,7 @@ public class Spawner : MonoBehaviourBase {
   #region ASSET COLLECTION ===================================================================================================================================
 
 #if ASSET_NAUGHTY_ATTRIBUTES
-  [HorizontalLine(color: EColor.Red)]
+  [NaughtyAttributes.HorizontalLine(color: NaughtyAttributes.EColor.Red)]
 #endif
   [PropertySpace(SpaceBefore = SectionSpace + 10)]
   [HideLabel]
@@ -202,10 +199,7 @@ public class Spawner : MonoBehaviourBase {
   [BoxGroup("Spawned Attributes")] [SerializeField] [LabelText("Lifetime")]
   private bool enableLifeTime;
 
-  [BoxGroup("Spawned Attributes")]
-  [EnableIf(nameof(enableLifeTime))]
-  [SerializeField]
-  [HideLabel]
+  [BoxGroup("Spawned Attributes")] [EnableIf(nameof(enableLifeTime))] [SerializeField] [HideLabel]
   private Vector2Wrapper lifeTimeRange = new(Vector2.zero, 0);
 
   // ? FXs on Destroy
@@ -220,10 +214,7 @@ public class Spawner : MonoBehaviourBase {
   [PropertySpace(SpaceBefore = SectionSpace)] [HideLabel] [DisplayAsString(false)] [ShowInInspector]
   private const string SPAWNING_LOCATION_SPACE = "";
 
-  [BoxGroup("Spawning Location")]
-  [OnValueChanged(nameof(OnSpawningAreaChange), true)]
-  [SerializeField]
-  [HideLabel]
+  [BoxGroup("Spawning Location")] [OnValueChanged(nameof(OnSpawningAreaChange), true)] [SerializeField] [HideLabel]
   private Area spawningArea = new();
 
   private enum PointSpawnMode {
@@ -307,19 +298,13 @@ public class Spawner : MonoBehaviourBase {
   [SerializeField]
   private bool moveSpawnerToMark = true;
 
-  [FoldoutGroup("Spawning Location/Adjacent")]
-  [EnableIf(nameof(enableAdjacentSpawning))]
-  [SerializeField]
+  [FoldoutGroup("Spawning Location/Adjacent")] [EnableIf(nameof(enableAdjacentSpawning))] [SerializeField]
   private GameObject adjacentMarkPrefab;
 
-  [FoldoutGroup("Spawning Location/Adjacent")]
-  [EnableIf(nameof(enableAdjacentSpawning))]
-  [SerializeField]
+  [FoldoutGroup("Spawning Location/Adjacent")] [EnableIf(nameof(enableAdjacentSpawning))] [SerializeField]
   private GameObject adjacentMark;
 
-  [FoldoutGroup("Spawning Location/Adjacent")]
-  [EnableIf(nameof(enableAdjacentSpawning))]
-  [SerializeField]
+  [FoldoutGroup("Spawning Location/Adjacent")] [EnableIf(nameof(enableAdjacentSpawning))] [SerializeField]
   private float adjacentOffset;
 
   [FoldoutGroup("Spawning Location/Adjacent")]
@@ -416,10 +401,7 @@ public class Spawner : MonoBehaviourBase {
 
   private int activeCurrentAmount; // the amount that player can spawn
 
-  [TabGroup("Spawning Mode", "Active Spawning")]
-  [SuffixLabel("(seconds)")]
-  [MinValue(0f)]
-  [SerializeField]
+  [TabGroup("Spawning Mode", "Active Spawning")] [SuffixLabel("(seconds)")] [MinValue(0f)] [SerializeField]
   private float activeReloadTime = 1f;
 
   private void ProcessActiveSpawn() {
@@ -520,10 +502,7 @@ public class Spawner : MonoBehaviourBase {
   [BoxGroup("Spawner Config")] [SerializeField] [EnumToggleButtons]
   private GizmosMode gizmosMode = GizmosMode.Always;
 
-  [BoxGroup("Spawner Config")]
-  [InfoBox("Useful for Trigger Spawning")]
-  [ToggleLeft]
-  [SerializeField]
+  [BoxGroup("Spawner Config")] [InfoBox("Useful for Trigger Spawning")] [ToggleLeft] [SerializeField]
   private bool moveToLastSpawnedObject; // TODO: add offset attribute
 
   [BoxGroup("Spawner Config")]
@@ -537,9 +516,7 @@ public class Spawner : MonoBehaviourBase {
     spawnedObjects.Clear();
   }
 
-  [BoxGroup("Spawner Config")]
-  [ShowIf(nameof(saveSpawnedObjects))]
-  [ShowInInspector]
+  [BoxGroup("Spawner Config")] [ShowIf(nameof(saveSpawnedObjects))] [ShowInInspector]
   private List<GameObject> spawnedObjects; // TODO: make list non-editable from Inspector
 
   #endregion ===================================================================================================================================

@@ -87,10 +87,10 @@ Material:
     - _CloudCubemapDoubleLayerHeight: 0
     - _CloudCubemapDoubleLayerRotationSpeed: 0.02
     - _CloudCubemapHeight: 0
-    - _CloudCubemapNormalAmbientIntensity: 0.033
-    - _CloudCubemapNormalDoubleLayerHeight: 0
-    - _CloudCubemapNormalDoubleLayerRotationSpeed: 0.02
-    - _CloudCubemapNormalHeight: -0.031
+    - _CloudCubemapNormalAmbientIntensity: 0.158
+    - _CloudCubemapNormalDoubleLayerHeight: 0.003
+    - _CloudCubemapNormalDoubleLayerRotationSpeed: -0.422
+    - _CloudCubemapNormalHeight: -0.02
     - _CloudCubemapNormalRotationSpeed: 0.03
     - _CloudCubemapRotationSpeed: 0.01
     - _CloudDensity: 0.25
@@ -148,8 +148,8 @@ Material:
     - _StarLayer3TwinkleAmount: 0.7
     - _StarLayer3TwinkleSpeed: 5
     - _SunAlpha: 1
-    - _SunEdgeFade: 0.0001
-    - _SunHDRBoost: 1
+    - _SunEdgeFade: 0.331
+    - _SunHDRBoost: 1.6
     - _SunRadius: 0.146
     - _SunSpriteAnimationSpeed: 15
     - _SunSpriteItemCount: 64
@@ -158,10 +158,10 @@ Material:
     - _CloudColor2: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     - _CloudCubemapDoubleLayerTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _CloudCubemapNormalDoubleLitColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudCubemapNormalDoubleShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _CloudCubemapNormalDoubleShadowColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _CloudCubemapNormalLitColor: {r: 1, g: 1, b: 1, a: 1}
     - _CloudCubemapNormalShadowColor: {r: 0.6838235, g: 0.6838235, b: 0.6838235, a: 1}
-    - _CloudCubemapNormalToLight: {r: 0.8440528, g: 0.5362601, b: 0, a: 0}
+    - _CloudCubemapNormalToLight: {r: 0.5652995, g: 0.8248857, b: 0, a: 0}
     - _CloudCubemapTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _GradientSkyLowerColor: {r: 0.6544118, g: 0.95709944, b: 1, a: 1}
     - _GradientSkyMiddleColor: {r: 0.42333475, g: 0.82774276, b: 0.99264705, a: 1}
@@ -178,6 +178,6 @@ Material:
     - _StarLayer3Color: {r: 0.46323532, g: 0.6668357, b: 1, a: 1}
     - _StarLayer3SpriteDimensions: {r: 0, g: 0, b: 0, a: 0}
     - _SunColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunPosition: {r: 0.8440528, g: 0.5362601, b: 0, a: 0}
+    - _SunPosition: {r: 0.5652995, g: 0.8248857, b: 0, a: 0}
     - _SunSpriteDimensions: {r: 8, g: 8, b: 0, a: 0}
   m_BuildTextureStacks: []

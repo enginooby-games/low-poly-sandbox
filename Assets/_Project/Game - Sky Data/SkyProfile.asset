@@ -523,7 +523,7 @@ MonoBehaviour:
           m_Time: 0
           m_InterpolationCurve: 0
           m_InterpolationDirection: 0
-          value: 0.5
+          value: -0.4
         m_Name: Sun Rotation Speed
         m_Id: 1154b0a8-3a46-4e31-a111-b2b915c46e24
         minValue: -10
@@ -543,7 +543,7 @@ MonoBehaviour:
           m_Time: 0
           m_InterpolationCurve: 0
           m_InterpolationDirection: 0
-          value: 0.0001
+          value: 0.331
         m_Name: Sun Edge Feathering
         m_Id: 5bd244f7-a047-4c37-9395-9aae3f3a2066
         minValue: 0.0001
@@ -553,7 +553,7 @@ MonoBehaviour:
           m_Time: 0
           m_InterpolationCurve: 0
           m_InterpolationDirection: 0
-          value: 1
+          value: 1.6
         m_Name: Sun Bloom Intensity
         m_Id: 8d1e415d-caca-45ed-aa34-6460f4e9e38b
         minValue: 1
@@ -1483,7 +1483,7 @@ MonoBehaviour:
           m_Time: 0
           m_InterpolationCurve: 0
           m_InterpolationDirection: 0
-          value: -0.031
+          value: -0.02
         m_Name: Cloud Lit - Height
         m_Id: ebd7c724-81b9-40ea-8386-aae5bebd01b1
         minValue: -1
@@ -1493,7 +1493,7 @@ MonoBehaviour:
           m_Time: 0
           m_InterpolationCurve: 0
           m_InterpolationDirection: 0
-          value: 0.033
+          value: 0.158
         m_Name: Cloud Lit - Ambient Intensity
         m_Id: 7b2bb6fd-30b0-49af-b550-c178eac2c35e
         minValue: 0
@@ -1503,7 +1503,7 @@ MonoBehaviour:
           m_Time: 0
           m_InterpolationCurve: 0
           m_InterpolationDirection: 0
-          value: 0.07
+          value: -0.422
         m_Name: Cloud Lit - Double Layer Rotation Speed
         m_Id: 85c967a3-e944-4bf8-808b-336c59e436f2
         minValue: -0.5
@@ -1775,7 +1775,7 @@ MonoBehaviour:
           m_InterpolationDirection: 0
           spherePoint:
             horizontalRotation: 0
-            verticalRotation: 0.566
+            verticalRotation: 0.97
         m_Name: Sun Position
         m_Id: 675533c6-e625-4e7a-952d-6e191eed8364
       - keyframes:

@@ -38,7 +38,7 @@ public class Reference : SerializableBase {
 
   [EnableIf(nameof(_enableGameObjectReference))]
   [ShowIf(nameof(findMethod), FindMethod.Tag)]
-  [Enginooby.Attribute.Tag]
+  // [Enginooby.Attribute.Tag]
   [HideLabel, SerializeField]
   private string _tag = "Player";
   [EnableIf(nameof(_enableGameObjectReference))]
