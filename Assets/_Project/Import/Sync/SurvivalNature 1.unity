@@ -25872,11 +25872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 741843327}
+      objectReference: {fileID: 2100000, guid: 530ed7991554bfc4fb16d8a367d50186, type: 3}
     - target: {fileID: 64904377382044106, guid: 56c157ca6ee6048438b794436bc7e413,
         type: 3}
       propertyPath: m_Convex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c157ca6ee6048438b794436bc7e413, type: 3}
@@ -27690,65 +27690,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!1 &676930240 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1367448661009924, guid: 56c157ca6ee6048438b794436bc7e413,
-    type: 3}
-  m_PrefabInstance: {fileID: 564936483}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &676930242 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 23775975856387732, guid: 56c157ca6ee6048438b794436bc7e413,
-    type: 3}
-  m_PrefabInstance: {fileID: 564936483}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &676930244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676930240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 198ada6227b2f4c419bd5cbefdf722f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shaderFamily: LwrpUnlitTransparent
-  blendMode: 6
-  renderMode: 0
-  maskMode: 0
-  maskBehaviour: 0
-  overlayColor: {r: 1, g: 1, b: 1, a: 1}
-  overlayTexture: {fileID: 0}
-  overlayTextureOffset: {x: 0, y: 0}
-  overlayTextureScale: {x: 1, y: 1}
-  framebufferEnabled: 0
-  unifiedGrabEnabled: 0
-  shareMaterial: 0
-  blendMaterial: {fileID: 741843327}
-  componentExtensionState:
-    extendedComponent: {fileID: 676930242}
-    shaderProperties:
-    - name: _MainTex
-      type: 3
-      colorValue: {r: 1, g: 1, b: 1, a: 1}
-      vectorValue: {x: 0, y: 0, z: 0, w: 0}
-      floatValue: 0
-      textureValue: {fileID: 2800000, guid: 24ecd48f5bae0d24abd940bf2787eae6, type: 3}
-    - name: _MainTex_ST
-      type: 1
-      colorValue: {r: 1, g: 1, b: 1, a: 1}
-      vectorValue: {x: 1, y: 1, z: 0, w: 0}
-      floatValue: 0
-      textureValue: {fileID: 0}
-    - name: _Color
-      type: 0
-      colorValue: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-      vectorValue: {x: 0, y: 0, z: 0, w: 0}
-      floatValue: 0
-      textureValue: {fileID: 0}
-  stencilId: 1
 --- !u!1 &677444212
 GameObject:
   m_ObjectHideFlags: 0
@@ -29285,34 +29226,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740231941}
   m_Mesh: {fileID: 4300000, guid: 9ec65aebf55e5184ea90e6d7e853a342, type: 3}
---- !u!21 &741843327
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 9
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/BlendModes/LwrpUnlitTransparent/Grab
-  m_Shader: {fileID: 4800000, guid: 021921c55b9453b45b7b0bb02af77d79, type: 3}
-  m_ShaderKeywords: BLENDMODES_MODE_SCREEN
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 24ecd48f5bae0d24abd940bf2787eae6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  m_BuildTextureStacks: []
 --- !u!4 &748992548
 Transform:
   m_ObjectHideFlags: 0
