@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 635bfebfe7180794a95f118a4d319b87, type: 3}
+  m_Name: MyFootstepMaterial
+  m_EditorClassIdentifier: 
+  defaultEffect:
+    walkAudioClips:
+    - {fileID: 8300000, guid: d94b55567221acf4185e94bc5cd65d74, type: 3}
+    walkPrefabs:
+    - prefab: {fileID: 8894929110622384770, guid: 053042bf44fe74e698466133392d634c,
+        type: 3}
+      atHitPosition: 1
+      positionOffset: {x: 0, y: 0, z: 0}
+      useFootRotation: 1
+      useHitNormal: 1
+      rotationOffset: {x: 0, y: 0, z: 0}
+      stopAfter: 0
+      removeAfter: 0
+    runAudioClips: []
+    runPrefabs: []
+    sprintAudioClips: []
+    sprintPrefabs: []
+    jumpAudioClips:
+    - {fileID: 8300000, guid: 78dca81863cc0c244b9d2e2084a94a15, type: 3}
+    jumpPrefabs:
+    - prefab: {fileID: 100000, guid: 4d994014c31147f4880d78cd39d6b63a, type: 3}
+      atHitPosition: 1
+      positionOffset: {x: 0, y: 0, z: 0}
+      useFootRotation: 1
+      useHitNormal: 1
+      rotationOffset: {x: 0, y: 0, z: 0}
+      stopAfter: 0
+      removeAfter: 0
+    landAudioClips: []
+    landPrefabs: []
+    customEffects: []
+  tagEffects: []

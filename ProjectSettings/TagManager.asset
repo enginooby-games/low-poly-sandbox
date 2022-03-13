@@ -12,6 +12,8 @@ TagManager:
   - ClingPoint
   - Companion
   - Canvas
+  - Exploder
+  - DepthCamera
   layers:
   - Default
   - TransparentFX
@@ -37,7 +39,7 @@ TagManager:
   - Camera3
   - Camera4
   - DestroyItDebris
-  - 
+  - Ragdoll
   - 
   - Enemy
   - MovingPlatform
