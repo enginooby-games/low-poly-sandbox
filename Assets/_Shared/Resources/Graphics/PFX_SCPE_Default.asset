@@ -40,6 +40,37 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &-8865019736792681266
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ffd454053aaa249a62a461f9c8db22, type: 3}
+  m_Name: Overlay
+  m_EditorClassIdentifier: 
+  active: 0
+  overlayTex:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: be1547b9461404a408764cfe64cf0b06, type: 3}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.296
+  luminanceThreshold:
+    m_OverrideState: 0
+    m_Value: 0
+  autoAspect:
+    m_OverrideState: 0
+    m_Value: 0
+  blendMode:
+    m_OverrideState: 0
+    m_Value: 0
+  tiling:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &-8163904152288653998
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -142,7 +173,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.052
+    m_Value: 0.071
   brightness:
     m_OverrideState: 1
     m_Value: {x: 0.12679763, y: 1.6732026}
@@ -246,7 +277,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   lumThreshold:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.01
   edgeColor:
     m_OverrideState: 1
@@ -411,6 +442,27 @@ MonoBehaviour:
   - {fileID: 3650864212083798474}
   - {fileID: 4985055531062270337}
   - {fileID: 7699739154408298074}
+  - {fileID: 1740079160292839929}
+  - {fileID: -8865019736792681266}
+--- !u!114 &1740079160292839929
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab22b3400d2f8464d9d467a4e5f30570, type: 3}
+  m_Name: Sharpen
+  m_EditorClassIdentifier: 
+  active: 1
+  amount:
+    m_OverrideState: 1
+    m_Value: 1
+  radius:
+    m_OverrideState: 0
+    m_Value: 2
 --- !u!114 &1841099454319396111
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -509,13 +561,13 @@ MonoBehaviour:
     m_Value: {fileID: 2800000, guid: 039004ec2fad19949bfc60fa90b758a6, type: 3}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.661
+    m_Value: 1
   luminanceThreshold:
     m_OverrideState: 0
     m_Value: 0.446
   tiling:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2
 --- !u!114 &2478622741782794265
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1006,8 +1058,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   hsvMode:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   levels:
     m_OverrideState: 1
     m_Value: 10
@@ -1019,7 +1071,7 @@ MonoBehaviour:
     m_Value: 102
   value:
     m_OverrideState: 1
-    m_Value: 29
+    m_Value: 10
 --- !u!114 &7121811246543226627
 MonoBehaviour:
   m_ObjectHideFlags: 3
