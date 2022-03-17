@@ -6063,6 +6063,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1720590605}
     m_Modifications:
+    - target: {fileID: 1499169428584386, guid: 46d37219be33dcf438a2829ab911cfd2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4092299817195578, guid: 46d37219be33dcf438a2829ab911cfd2, type: 3}
       propertyPath: m_RootOrder
       value: 2
