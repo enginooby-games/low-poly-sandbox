@@ -14,15 +14,16 @@ Basically - my custom library/framework containing reusable components for devel
 + **Event** ```What happens?```: two approaches - MonoBehaviour and scriptable object.
 + **Area** ```Where things happen?```: continuous area & decree area (containing points). Used for spawner, vision, formation, etc.
 + **Action Scheduler** ```When things happen?```
-+ **Stat**: variable + events + UIs. Two approaches - serializable class and scriptable object.
++ **Stat**: variable + events + UIs. Two approaches - serializable class and scriptable object. Using serializable stat in MonoBehaviour is more convenient than SO. 
 
 + **Input**: wrapper for simple keycode & Input Manager with additional modifier keys.
 + **Utils**: extension/helper methods.
 + **Utility/Plugin/Addon**: modular systems.
 
-+ **Asset Profile**/Data/Preset: ScriptableObject contains many configured data for an asset (e.g., CursorData configures texture, hotspot; AudioClipData contains tuned volume and pitch for an audio clip).
-+ **Asset Variation**/Collection (concurrent vs. un-concurrent?): ScriptableObject collection of multiple interchangable asset data for a situation (e.g., an AudioClipCollection contains different clips to play randomly when player gets attacked). This collection belongs to a GameObject.
-+ **Asset Context**/Theme/Collection: ScriptableObject collection of multiple simultaneous asset data or asset data collections for a context/theme/project (e.g., many horror AudioClipVariation form a AudioClipContext to be used in a horror game). This collection belongs to multiple GameObjects.
++ **Asset Profile**/Data/Preset: ScriptableObject contains many fine-tuned data for an asset (e.g., CursorData configures texture, hotspot; AudioClipData contains tuned volume and pitch for an audio clip).
++ **Asset Variation**/Collection (concurrent vs. un-concurrent?): ScriptableObject collection of multiple interchangeable asset data for a situation (e.g., an AudioClipCollection contains different clips to play randomly when player gets attacked). This collection belongs to a GameObject.
++ **Asset Context**/Theme/Collection/Centralization: ScriptableObject collection of multiple simultaneous asset data or asset data collections for a context/theme/project (e.g., many horror AudioClipVariation form a AudioClipContext to be used in a horror game). This collection belongs to multiple GameObjects.
+> Profile < Variant < Context
 + **Collection** (vs. Asset Variation?)
 + **Switcher** (vs. Asset Variation?)
 

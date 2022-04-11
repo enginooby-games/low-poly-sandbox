@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Enginooby.Prototype;
 using UnityEngine;
 using UnityEngine.Events;
 #if ODIN_INSPECTOR
@@ -125,7 +126,7 @@ public abstract class ArchievedTrigger : MonoBehaviour {
       yield return new WaitForSeconds(onTriggerEnterDelay);
       InvokeAction();
       PlayTriggerEventVfx(onTriggerEnterVfx);
-      if (onTriggerEnterSfx) GameManager.Instance.audioSource.PlayOneShot(onTriggerEnterSfx);
+      if (onTriggerEnterSfx) AudioManager.Instance.PlayOneShot(onTriggerEnterSfx);
       if (destroyAfterInvoked.HasFlag(DestroyTarget.Other)) Destroy(other.gameObject);
     }
 

@@ -1,9 +1,11 @@
-/// <summary>
-///   Add additional logic for pool event for specific pool object (vs. uniform PoolObject)
-/// </summary>
-public interface IPoolObject {
+namespace _Shared.Scripts.Spawner {
   /// <summary>
-  ///   Clean object for reuse.
+  ///   Add additional logic for pool event for specific pool object (vs. uniform PoolObject)
   /// </summary>
-  void OnPoolReuse();
+  public interface IPoolObject {
+    /// <summary>
+    ///   Clean object for reuse.
+    /// </summary>
+    void OnPoolReuse();
+  }
 }

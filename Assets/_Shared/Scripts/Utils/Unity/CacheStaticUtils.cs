@@ -128,7 +128,7 @@ public static class CacheStaticUtils {
     Action<Object> action = null,
     bool isGameObjectCached = true) {
     if (go.TryGetComponent(componentType, out var component)) {
-      if (EnableDebug) Debug.Log($"{go.name} cached: {isGameObjectCached}. Caching {component.GetType()}");
+      // if (EnableDebug) Debug.Log($"{go.name} cached: {isGameObjectCached}. Caching {component.GetType()}");
       components.Add(componentType, component);
       action?.Invoke(component);
       return component;

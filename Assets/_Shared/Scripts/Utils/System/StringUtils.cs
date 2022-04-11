@@ -23,6 +23,25 @@ public static class StringUtils {
   }
 
   /// <summary>
+  ///   Add hyphen before every capital character, lower all, also remove "_".
+  ///   <example>_theAppDemo -> the-app-demo</example>
+  /// </summary>
+  public static string ToKebabLowerCase(this string @string) {
+    @string = @string.Replace("_", "");
+    @string = Regex.Replace(@string, "([A-Z])", "-$1");
+    @string = @string.ToLower();
+    return @string;
+  }
+
+  /// <summary>
+  ///   Add space before every capital character except the 1st one to form a normal sentence.
+  ///   <example>theAppDemo -> The App Demo</example>
+  /// </summary>
+  public static string ToSentenceUpperCase(this string str) {
+    return Regex.Replace(str, "[a-z][A-Z]", m => m.Value[0] + " " + char.ToUpper(m.Value[1]));
+  }
+
+  /// <summary>
   ///   Add a space before every capital character.
   ///   <example>TheAppDemo -> The app demo</example>
   /// </summary>

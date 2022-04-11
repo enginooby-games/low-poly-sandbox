@@ -1,3 +1,5 @@
+using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 
 public static class AudioUtils {
@@ -7,7 +9,7 @@ public static class AudioUtils {
   public static void PlayOneShot(this AudioClip audioClip) {
     if (!audioClip) return;
     // ! GameManager coupled
-    GameManager.Instance.audioSource.PlayOneShot(audioClip);
+    // GameManager.Instance.AudioSource.PlayOneShot(audioClip);
   }
 
   /// <summary>
@@ -45,5 +47,25 @@ public static class AudioUtils {
       audioSource.PlayIfStopped(clip);
     else
       audioSource.Stop();
+  }
+
+  /// <remarks>[Reflection]</remarks>
+  public static void PlayInEditorMode(AudioClip clip, int startSample = 0, bool loop = false) {
+    var unityEditorAssembly = typeof(AudioImporter).Assembly;
+
+    var audioUtilClass = unityEditorAssembly.GetType("UnityEditor.AudioUtil");
+    var method = audioUtilClass.GetMethod(
+      "PlayPreviewClip",
+      BindingFlags.Static | BindingFlags.Public,
+      null,
+      new[] {typeof(AudioClip), typeof(int), typeof(bool)},
+      null
+    );
+
+    Debug.Log(method);
+    method.Invoke(
+      null,
+      new object[] {clip, startSample, loop}
+    );
   }
 }

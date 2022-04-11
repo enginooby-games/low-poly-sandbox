@@ -1,3 +1,5 @@
+using Enginooby.Prototype;
+
 public class ArchievedTriggerScore : ArchievedTriggerStat<int> {
   // TIP: Reset() is invoked when Component first added or being Reset (in Inspector)
   // Hence useful for ovveride defaut values of base class 
@@ -9,6 +11,8 @@ public class ArchievedTriggerScore : ArchievedTriggerStat<int> {
   }
 
   public override void UpdateStat() {
-    GameManager.Instance.UpdateScores(statValue);
+#if STAT_SCORE
+    StatManager.Instance.Score.Add(statValue);
+#endif
   }
 }

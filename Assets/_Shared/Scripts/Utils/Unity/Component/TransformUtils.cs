@@ -114,10 +114,12 @@ public static class TransformUtils {
 
   /// <summary>
   /// <remarks>In-update method</remarks>
-  ///   Translate on local Z (included deltaTime).
+  ///   Translate on local Z = Move forward (included deltaTime).
   /// </summary>
-  public static void MoveZ(this Transform transform, float distance = 1f) =>
-    transform.Translate(v001 * Time.deltaTime * distance);
+  public static void MoveZ(this Transform transform, float speed = 1f) =>
+    transform.Translate(v001 * Time.deltaTime * speed);
+
+  public static void MoveForward(this Transform transform, float speed = 1f) => transform.MoveZ(speed);
 
   /// <summary>
   /// <remarks>In-update method</remarks>

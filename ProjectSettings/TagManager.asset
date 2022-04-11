@@ -4,16 +4,35 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - LevelBounds
-  - FX
+  - Action
+  - AutoCrouch
+  - Ragdoll
+  - Ignore Ragdoll
+  - Boss
   - Enemy
-  - World
-  - NoMask
-  - ClingPoint
-  - Companion
+  - CompanionAI
+  - Weapon
+  - LookAt
+  - Dirt
+  - Wood
+  - Metal
+  - Concrete
+  - Glass
+  - Water
+  - LadderTrigger
+  - ExitWater
+  - Barrel
+  - FreeClimb
+  - ClimbDirection
+  - Zipline
+  - PlayerUI
+  - Collectable
+  - CoverPoint
+  - Interactable
+  - AIAction
   - Canvas
+  - Companion
   - Exploder
-  - DepthCamera
   layers:
   - Default
   - TransparentFX
@@ -23,46 +42,31 @@ TagManager:
   - UI
   - 
   - 
-  - Obstacles
-  - Terrain
   - Player
-  - ObstaclesDoors
-  - NoPathfinding
-  - Enemies
-  - NoCollisions
-  - Hole
-  - MovingPlatform
-  - FallingPlatform
-  - Projectile
-  - Camera1
-  - Camera2
-  - Camera3
-  - Camera4
+  - Enemy
+  - CompanionAI
+  - Triggers
+  - StopMove
   - DestroyItDebris
-  - Ragdoll
+  - HeadTrack
+  - BodyPart
+  - BlockAIRayCast
+  - Pushable
+  - CoverPoint
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - Enemy
   - MovingPlatform
   - VisualEffect
   - Overlay
   - SubCharacter
-  - Character
+  - PostProcess
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 1798043625
-    locked: 0
-  - name: Ground
-    uniqueID: 2296623839
-    locked: 0
-  - name: Foreground
-    uniqueID: 1603220759
-    locked: 0
-  - name: Characters
-    uniqueID: 47421343
-    locked: 0
-  - name: Above
-    uniqueID: 961700441
     locked: 0

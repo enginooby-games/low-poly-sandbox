@@ -1,3 +1,5 @@
+using Enginooby.Prototype;
+
 public class ArchievedTriggerGameOver : ArchievedTrigger {
   private void Reset() {
     destroyAfterInvoked = DestroyTarget.Trigger;

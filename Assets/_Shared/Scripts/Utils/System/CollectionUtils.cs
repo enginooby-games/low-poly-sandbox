@@ -168,9 +168,10 @@ namespace Enginooby.Utils {
     ///   Perform an action on each item.
     /// </summary>
     public static IEnumerable<T> ForEach<T>([CanBeNull] this IEnumerable<T> collection, Action<T> action) {
-      foreach (var obj in collection)
+      foreach (var obj in collection) {
         action?.Invoke(obj);
-      return collection;
+        yield return obj;
+      }
     }
 
     #endregion

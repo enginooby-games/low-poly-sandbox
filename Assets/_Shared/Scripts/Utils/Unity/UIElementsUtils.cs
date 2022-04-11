@@ -1,6 +1,10 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor.UIElements;
 #endif
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Enginooby.Utils {
@@ -33,6 +37,26 @@ namespace Enginooby.Utils {
       if (styleSheet != null) child.styleSheets.Add(styleSheet);
       container.Add(child);
       return child;
+    }
+
+    public static float GetCheckedTogglePercentage(this IEnumerable<Toggle> toggles) {
+      var toggleArray = toggles as Toggle[] ?? toggles.ToArray();
+      if (!toggleArray.Any()) return 0;
+      var checkedToggle = toggleArray.Count(toggle => toggle.value);
+      return checkedToggle * 100f / toggleArray.Count();
+    }
+
+    public static IEnumerable<T> Children<T>(this VisualElement visualElement) where T : VisualElement =>
+      visualElement.Children().Cast<T>();
+
+    // TODO: generalize key event type
+    public static void OnKeyDown(
+      this CallbackEventHandler handler,
+      KeyCode keyCode,
+      Action action) {
+      handler.RegisterCallback<KeyDownEvent>(e => {
+        if (e.keyCode == keyCode) action.Invoke();
+      });
     }
   }
 }

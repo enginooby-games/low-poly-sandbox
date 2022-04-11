@@ -1,15 +1,14 @@
 // * Alternative: Var Reference SO
-
 // ? Make generic for int/float...
 // ? Create subclasses (or Bridge pattern) for: StatWithEvent, StatWithUI, StatWithEventAndUI, Stat (w/o event, UI)
 // ? Partial classes
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enginooby.Utils;
 using UnityEngine;
-using UnityEngine.Events;
+using Event = Enginooby.Core.Event;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 
@@ -17,16 +16,17 @@ using Sirenix.OdinInspector;
 using Enginooby.Attribute;
 #endif
 
+// TODO: Cooldown time to prevent updating continuously (e.g., lose multiple lives when touch many obstacles at the same time)
 [Serializable]
 [InlineProperty]
 public class Stat {
-  private const float LABEL_WIDTH_1 = 80f;
+  private const float LabelWidth1 = 80f;
   [HideInInspector] public string statName;
 
   [FoldoutGroup("$statName")]
-  [EnableIf(nameof(enable))]
+  [EnableIf(nameof(Enable))]
   [HorizontalGroup("$statName/Debug")]
-  [LabelWidth(LABEL_WIDTH_1)]
+  [LabelWidth(LabelWidth1)]
   // [ProgressBar(nameof(MinValue), nameof(MaxValue), r: 1, g: 1, b: 1, Height = 30)]
   [DisplayAsString]
   public int CurrentValue;
@@ -35,21 +35,23 @@ public class Stat {
   // [ToggleGroup(nameof(enable), groupTitle: "$statName")]
   [FoldoutGroup("$statName")]
   [HorizontalGroup("$statName/Enable")]
-  [LabelWidth(LABEL_WIDTH_1)]
+  [LabelWidth(LabelWidth1)]
   [LabelText("Enable Stat")]
-  public bool enable = true;
+  [OnValueChanged(nameof(OnEnableChanged))]
+  public bool Enable = true;
 
-  // TODO: Implement multiple UIs (? scriptable objects)
-  // [ToggleGroup(nameof(enable))]
-  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [OnValueChanged(nameof(InitStatUIs), true)] [LabelText("UIs")]
-  public List<StatUI> uis = new() {new StatUI()};
+  private void OnEnableChanged() {
+    UIs.ForEach(ui => {
+      if (ui.label != null) ui.label.enabled = Enable;
+    });
+  }
 
   public Stat(string statName, int initialValue = 0) {
     this.statName = statName;
     InitialValue = initialValue;
     CurrentValue = initialValue;
     // this.ui.statName = statName;
-    uis.ForEach(ui => ui.prefix = this.statName + ": ");
+    UIs.ForEach(ui => ui.prefix = this.statName + ": ");
   }
 
   // REFACTOR
@@ -58,137 +60,138 @@ public class Stat {
     InitialValue = initialValue;
     CurrentValue = initialValue;
     // this.ui.statName = statName;
-    uis.ForEach(ui => ui.prefix = this.statName + ": ");
+    UIs.ForEach(ui => ui.prefix = this.statName + ": ");
   }
 
-  [FoldoutGroup("$statName")]
-  // [EnableIf(nameof(EnableStatAndMax))]
-  // [HorizontalGroup("$statName/Debug"), LabelWidth(LABEL_WIDTH_1)]
-  // [Button]
-  public float CurrentPercentage => CurrentValue * 100 / MaxValue;
+  // ===================================================================================================================
 
-  private void InitStatUIs() {
-    UpdateStatUIs(InitialValue);
-    // this.uis.ForEach(ui => ui.prefix = statName + ": ");
-  }
+  // REFACTOR: Wrapper class for data with min, max
 
-  private void UpdateStatUIs(int currentValue) {
-    var maxValue = enableMax ? (int?) MaxValue : null;
-    var minValue = enableMin ? (int?) MinValue : null;
-    uis.ForEach(ui => ui.Update(currentValue, maxValue, minValue));
-  }
-
-  #region VALUES ===================================================================================================================================
+  #region VALUES
 
   // [ToggleGroup(nameof(enable))]
   [FoldoutGroup("$statName")]
-  [EnableIf(nameof(enable))]
+  [EnableIf(nameof(Enable))]
   [HorizontalGroup("$statName/Value")]
-  [LabelWidth(LABEL_WIDTH_1)]
+  [LabelWidth(LabelWidth1)]
   [OnValueChanged(nameof(OnInitialValueChanged))]
   public int InitialValue;
 
   private void OnInitialValueChanged() {
     CurrentValue = InitialValue;
-    InitStatUIs();
+    InitUIs();
   }
 
   // [ToggleGroup(nameof(enable))]
-  [FoldoutGroup("$statName")]
-  [EnableIf(nameof(enable))]
-  [HorizontalGroup("$statName/Enable")]
-  [LabelWidth(LABEL_WIDTH_1)]
-  public bool enableMin = true;
+  [FoldoutGroup("$statName")] [EnableIf(nameof(Enable))] [HorizontalGroup("$statName/Enable")] [LabelWidth(LabelWidth1)]
+  public bool EnableMin = true;
 
   [FoldoutGroup("$statName")]
-  [EnableIf(nameof(EnableStatAndMin))]
+  [EnableIf(nameof(IsMinEnabled))]
   [HorizontalGroup("$statName/Value")]
-  [LabelWidth(LABEL_WIDTH_1)]
+  [LabelWidth(LabelWidth1)]
   public int MinValue;
 
-  private bool EnableStatAndMin() => enable && enableMin;
+  [FoldoutGroup("$statName")] [EnableIf(nameof(Enable))] [HorizontalGroup("$statName/Enable")] [LabelWidth(LabelWidth1)]
+  public bool EnableMax;
 
   [FoldoutGroup("$statName")]
-  [EnableIf(nameof(enable))]
-  [HorizontalGroup("$statName/Enable")]
-  [LabelWidth(LABEL_WIDTH_1)]
-  public bool enableMax;
-
-  [FoldoutGroup("$statName")]
-  [EnableIf(nameof(EnableStatAndMax))]
+  [EnableIf(nameof(IsMaxEnabled))]
   [HorizontalGroup("$statName/Value")]
-  [LabelWidth(LABEL_WIDTH_1)]
+  [LabelWidth(LabelWidth1)]
   [PropertySpace(SpaceAfter = 10, SpaceBefore = 0)]
   public int MaxValue = 100;
 
-  private bool EnableStatAndMax() => enable && enableMax;
+  private bool IsMinEnabled() => Enable && EnableMin;
+  private bool IsMaxEnabled() => Enable && EnableMax;
+  private bool IsMaxDisabled() => Enable && !EnableMax;
 
-  private bool EnableStatAndDisableMax() => enable && !enableMax;
+  #endregion
 
-  #endregion ===================================================================================================================================
+  // ===================================================================================================================
 
-  #region EVENTS ===================================================================================================================================
+  #region UI
 
-  // TIP: Declare both public C# event and private serialized UnityEvent 
-  // -> Use C# event (bind in script) instead of UnityEvent (bind in Inspector) for better performance.
-
-  // ? Rename events: changed, increased, decreased 
-
+  // TODO: Implement multiple UIs (? scriptable objects)
   // [ToggleGroup(nameof(enable))]
-  // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatChange = new();
+  [FoldoutGroup("$statName")] [ShowIf(nameof(Enable))] [OnValueChanged(nameof(InitUIs), true)] [LabelText("UIs")]
+  public List<StatUI> UIs = new() {new StatUI()};
 
-  public event Action OnStatChangeEvent;
 
-  // [ToggleGroup(nameof(enable))]
-  // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatIncrease = new();
+  [FoldoutGroup("$statName")]
+  // [EnableIf(nameof(EnableStatAndMax))]
+  // [HorizontalGroup("$statName/Debug"), LabelWidth(LABEL_WIDTH_1)]
+  // [Button]
+  public float CurrentPercentage => CurrentValue * 100f / MaxValue;
 
-  public event Action OnStatIncreaseEvent;
-
-  // [ToggleGroup(nameof(enable))]
-  // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatDecrease = new();
-
-  public event Action OnStatDecreaseEvent;
-
-  // [ToggleGroup(nameof(enable))]
-  // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatMin = new();
-
-  public event Action OnStatMinEvent;
-
-  // [ToggleGroup(nameof(enable))]
-  // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatMax = new();
-
-  public event Action OnStatMaxEvent;
-
-  // [ToggleGroup(nameof(enable))]
-  // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatZero = new();
-
-  public event Action OnStatZeroEvent;
-
-  #endregion ===================================================================================================================================
-
-  #region PUBLIC METHODS ===================================================================================================================================
-
-  // ? Rename to Add()
-  [ObsoleteAttribute("This is obsolete. Use Add instead.", false)]
-  public void Update(int amountToAdd) {
-    Set(CurrentValue + amountToAdd);
+  private void InitUIs() {
+    UpdateUIs(InitialValue);
+    // this.uis.ForEach(ui => ui.prefix = statName + ": ");
   }
 
-  public void Add(int amount) {
-    Set(CurrentValue + amount);
+  private void UpdateUIs(int currentValue) {
+    var maxValue = EnableMax ? (int?) MaxValue : null;
+    var minValue = EnableMin ? (int?) MinValue : null;
+    UIs.ForEach(ui => ui.Update(currentValue, maxValue, minValue));
   }
+
+  #endregion
+
+  // ===================================================================================================================
+
+  #region EVENTS
+
+  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
+  public Event OnChanged = new(nameof(OnChanged));
+
+  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
+  public Event OnIncreased = new(nameof(OnIncreased));
+
+  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
+  public Event OnDecreased = new(nameof(OnDecreased));
+
+  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
+  public Event OnMin = new(nameof(OnMin));
+
+  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
+  public Event OnMax = new(nameof(OnMax));
+
+  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
+  public Event OnZero = new(nameof(OnZero));
+
+  // [SerializeField] [HideInInspector] private bool _showOnChangedEvent = true;
+  // [SerializeField] [HideInInspector] private bool _showOnIncreasedEvent = true;
+  // [SerializeField] [HideInInspector]  private bool _showOnDecreasedEvent = true;
+  // [SerializeField] [HideInInspector] private bool _showOnMinEvent = true;
+  // [SerializeField] [HideInInspector] private bool _showOnMaxEvent = true;
+  // [SerializeField] [HideInInspector]  private bool _showOnZeroEvent = true;
+
+  private void InvokeEventsOnChanged(int oldValue) {
+    OnChanged?.Invoke();
+    OnIncreased?.Invoke(@if: CurrentValue > oldValue);
+    OnDecreased?.Invoke(@if: CurrentValue < oldValue);
+    OnZero?.Invoke(@if: CurrentValue == 0);
+    OnMin?.Invoke(@if: EnableMin && CurrentValue <= MinValue);
+    OnMax?.Invoke(@if: EnableMax && CurrentValue >= MaxValue);
+  }
+
+  public void RemoveEventListeners() {
+    OnChanged.RemoveListeners();
+    OnIncreased.RemoveListeners();
+    OnDecreased.RemoveListeners();
+    OnMin.RemoveListeners();
+    OnMax.RemoveListeners();
+    OnZero.RemoveListeners();
+  }
+
+  #endregion
+
+  // ===================================================================================================================
+
+  #region PUBLIC METHODS
+
+  // TODO: Lerp add value over time
+  public void Add(int amount) => Set(CurrentValue + amount);
 
   // ? Use a singleton MonoBehaviour instead, w/ extension method: Coroutine.Start()
   /// <summary>
@@ -197,81 +200,46 @@ public class Stat {
   /// </summary>
   public void Add(int amount, float duration, MonoBehaviour monoBehaviour) {
     monoBehaviour.StartCoroutine(AddCoroutine(amount, duration));
+
+    IEnumerator AddCoroutine(int theAmount, float theDuration) {
+      Add(theAmount);
+      yield return new WaitForSeconds(theDuration);
+      Add(-theAmount);
+    }
   }
 
-  private IEnumerator AddCoroutine(int amount, float duration) {
-    Add(amount);
-    yield return new WaitForSeconds(duration);
-    Add(-amount);
-  }
-
+  public void SetMin() => Set(MinValue);
+  public void SetMax() => Set(MaxValue);
+  
   /// <summary>
-  ///   Increase current stat value by 1.
+  /// Set to initial value without invoking events.
   /// </summary>
-  public void Increase() {
-    Add(1);
+  [FoldoutGroup("$statName")]
+  [HideInEditorMode]
+  [Button]
+  public void Reset() {
+    CurrentValue = InitialValue;
+    UpdateUIs(CurrentValue);
   }
 
-  /// <summary>
-  ///   Descrease current stat value by 1.
-  /// </summary>
-  public void Descrease() {
-    Add(-1);
-  }
-
-  public void SetZero() {
-    Set(0);
-  }
-
-  public void SetMin() {
-    Set(MinValue);
-  }
-
-  public void SetMax() {
-    Set(MaxValue);
-  }
-
-  /// <summary>
-  ///   Constraint the given amount in range of min-max (if enable) before setting value.
-  /// </summary>
+  // TODO: Lerp set to value over time
+  // ? Set value without invoking events
   // REFACTOR
+  /// <summary>
+  ///   Constraint (clamp) the given amount in range of min-max (if enable) before setting value.
+  /// </summary>
   public void Set(int value) {
-    if (enableMin && value < MinValue) value = MinValue;
-    if (enableMax && value > MaxValue) value = MaxValue;
+    // clamp in min max range
+    if (EnableMin && value < MinValue) value = MinValue;
+    if (EnableMax && value > MaxValue) value = MaxValue;
 
     if (value == CurrentValue) return;
-    OnStatChange.Invoke();
-    OnStatChangeEvent?.Invoke();
 
     var oldValue = CurrentValue;
     CurrentValue = value;
-    UpdateStatUIs(CurrentValue);
-
-    if (CurrentValue > oldValue) {
-      OnStatIncrease.Invoke();
-      OnStatIncreaseEvent?.Invoke();
-    }
-
-    if (CurrentValue < oldValue) {
-      OnStatDecrease.Invoke();
-      OnStatDecreaseEvent?.Invoke();
-    }
-
-    if (CurrentValue == 0) {
-      OnStatZero.Invoke();
-      OnStatZeroEvent?.Invoke();
-    }
-
-    if (enableMin && CurrentValue <= MinValue) {
-      OnStatMin.Invoke();
-      OnStatMinEvent?.Invoke();
-    }
-
-    if (enableMax && CurrentValue >= MaxValue) {
-      OnStatMax.Invoke();
-      OnStatMaxEvent?.Invoke();
-    }
+    UpdateUIs(CurrentValue);
+    InvokeEventsOnChanged(oldValue);
   }
 
-  #endregion ===================================================================================================================================
+  #endregion
 }

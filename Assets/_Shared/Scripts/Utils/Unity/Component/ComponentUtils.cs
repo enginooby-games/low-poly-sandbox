@@ -45,7 +45,7 @@ public static class ComponentUtils {
   ///   Get all child GameObjects of this GameObject (excluding this GameObject).
   /// </summary>
   public static IEnumerable<GameObject> GetGameObjectsInChildrenOnly(this GameObject go) =>
-    from Transform transformChild in go.transform select transformChild.gameObject;
+    go.transform.Cast<Transform>().Select(transformChild => transformChild.gameObject);
 
   // TIP: Use tag (remarks) in XML docs for method needed attention on usage
   // E.g., Reflection: methods should be used rarely due to performance cost.

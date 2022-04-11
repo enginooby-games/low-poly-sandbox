@@ -116,8 +116,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   sharpenIntensity:
-    m_OverrideState: 1
-    m_Value: 25
+    m_OverrideState: 0
+    m_Value: 0
   sharpenDepthThreshold:
     m_OverrideState: 0
     m_Value: 0.035
@@ -152,7 +152,7 @@ MonoBehaviour:
     m_Value: 3
   brightness:
     m_OverrideState: 1
-    m_Value: 1.7
+    m_Value: 0.87
   contrast:
     m_OverrideState: 1
     m_Value: 1.059
@@ -408,7 +408,7 @@ MonoBehaviour:
     m_Value: 0
   depthOfField:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   depthOfFieldFocusMode:
     m_OverrideState: 1
     m_Value: 0
@@ -437,7 +437,7 @@ MonoBehaviour:
     m_Value: 0
   depthOfFieldFocalLength:
     m_OverrideState: 1
-    m_Value: 0.03
+    m_Value: 0.018
   depthOfFieldAperture:
     m_OverrideState: 1
     m_Value: 27.8
@@ -570,7 +570,7 @@ MonoBehaviour:
     m_Value: {fileID: 0}
   outline:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   outlineColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}

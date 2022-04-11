@@ -19,21 +19,19 @@ using static TypeUtils;
 [Serializable]
 [InlineProperty]
 public class ReferenceConcreteType<T> where T : class {
+  // ? Constraint for interface 
   [SerializeField] [HideLabel] [ValueDropdown(nameof(GetTypeNames))] [OnValueChanged(nameof(UpdateCurrentType))]
   private string _currentTypeName;
 
   [SerializeField] [HideInInspector] private string _currentQualifiedTypeName;
 
-  [SerializeField] [HideInInspector] private IEnumerable<string> _qualifiedTypeNames;
-
-  [SerializeField] [HideInInspector] private IEnumerable<string> _typeNames;
-
+  private IEnumerable<string> _qualifiedTypeNames;
+  private IEnumerable<string> _typeNames;
 
   // ! guard case: current type is removed
   public Type Value => Type.GetType(_currentQualifiedTypeName) ?? GetAndSetFirstType();
   public T ValueT => Type.GetType(_currentQualifiedTypeName) as T;
-
-  public bool Is<K>() where K : T => Value == typeof(K);
+  public bool Is<TK>() where TK : T => Value == typeof(TK);
 
   private Type GetAndSetFirstType() {
     GetTypeNames();
@@ -45,13 +43,13 @@ public class ReferenceConcreteType<T> where T : class {
   /// <summary>
   ///   If current type is MonoBehaviour, create GameObject of the current type with the given extra component types.
   /// </summary>
-  public virtual T CreateInstance(params Type[] extraComponents) {
+  public virtual T CreateInstance(params Type[] components) {
     if (!Value.IsSubclassOf(typeof(MonoBehaviour)))
       return (T) Activator.CreateInstance(Value);
 
     // scripting-construction
     var go = new GameObject();
-    foreach (var component in extraComponents)
+    foreach (var component in components)
       if (component.IsSubclassOf(typeof(Component)))
         go.AddComponent(component);
 

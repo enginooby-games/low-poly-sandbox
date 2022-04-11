@@ -12,6 +12,7 @@ public static class RandomUtils {
   /// <summary>
   ///   Out of 100%.
   /// </summary>
+  // ? Use expression tree to implement generics for number type
   public static bool Percent<T>(this T percent)
     where T : unmanaged,
     IComparable,

@@ -5,6 +5,8 @@
 /// </summary>
 public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
   protected static T _instance;
+  protected virtual bool DoesInstanceExist => _instance;
+  protected virtual bool IsPersistent => true;
 
   public static T Instance {
     get {
@@ -24,18 +26,24 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
     }
   }
 
-  protected virtual bool DoesInstanceExist => _instance;
-
   public virtual void Awake() {
+    if (!IsPersistent) {
+      _instance = this as T;
+      AwakeSingleton();
+      return;
+    }
+
     if (DoesInstanceExist) {
       print("Destroy " + gameObject.name);
       Destroy(gameObject);
     }
     else {
       _instance = this as T;
+      print("Persistent " + gameObject.name);
       DontDestroyOnLoad(gameObject);
-      AwakeSingleton();
     }
+
+    AwakeSingleton();
   }
 
   /// <summary>
@@ -44,7 +52,6 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
   // FIX: sometimes is not called
   public virtual void AwakeSingleton() { }
 }
-
 
 public static class Singleton {
   // ! Cannot use

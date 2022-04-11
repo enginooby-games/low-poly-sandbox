@@ -10,11 +10,11 @@ using Sirenix.OdinInspector;
 using Enginooby.Attribute;
 #endif
 
-[Serializable]
-[InlineProperty]
 /// <summary>
 /// Wrapper for SO variable (reference) and normal variable (value).
 /// </summary>
+[Serializable]
+[InlineProperty]
 public class ReferenceVariable<T> where T : IEquatable<T> {
   [HorizontalGroup("Reference", MaxWidth = 100)] [ValueDropdown(nameof(valueList))] [SerializeField] [HideLabel]
   private bool _useConstant = true;

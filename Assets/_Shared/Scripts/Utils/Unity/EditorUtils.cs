@@ -13,6 +13,9 @@ namespace Enginooby.Utils {
     public static bool IsInteger(this SerializedProperty property) =>
       property.propertyType == SerializedPropertyType.Integer;
 
+    public static bool IsReferenceType(this SerializedProperty property) =>
+      property.propertyType == SerializedPropertyType.ObjectReference;
+
     public static bool DisplayDialog(string message, string title = "", string ok = "Yes", string cancel = "No") =>
       EditorUtility.DisplayDialog(title, message, ok, cancel);
 
@@ -30,6 +33,34 @@ namespace Enginooby.Utils {
       }
 
       return assets;
+    }
+
+    public static T[] GetScriptableObjectsOf<T>() where T : ScriptableObject {
+      //FindAssets uses tags check documentation for more info
+      var guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);
+      var a = new T[guids.Length];
+      for (var i = 0; i < guids.Length; i++) //probably could get optimized 
+      {
+        var path = AssetDatabase.GUIDToAssetPath(guids[i]);
+        a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
+      }
+
+      return a;
+    }
+
+    [MenuItem("Enginooby/Show All Hidden GameObjects")]
+    private static void ShowAll() {
+      var allGameObjects = Object.FindObjectsOfType<GameObject>();
+      foreach (var go in allGameObjects)
+        switch (go.hideFlags) {
+          case HideFlags.HideAndDontSave:
+            go.hideFlags = HideFlags.DontSave;
+            break;
+          case HideFlags.HideInHierarchy:
+          case HideFlags.HideInInspector:
+            go.hideFlags = HideFlags.None;
+            break;
+        }
     }
   }
 }

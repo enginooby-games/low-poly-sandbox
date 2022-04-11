@@ -115,34 +115,26 @@ public static class GameObjectUtils {
   /// Get all GameObjects by name in the active scene.
   /// </summary>
   public static IEnumerable<GameObject> FindAllGameObjects(string name) {
-    var gos = new List<GameObject>();
     var rootGos = SceneManager.GetActiveScene().GetRootGameObjects();
     // Use scene roots to iterate and check each GameObject.
-
     foreach (var rootGo in rootGos) {
       // If the name matches, add the root GameObject to the target list.
-      if (rootGo.name == name) gos.Add(rootGo);
+      if (rootGo.name == name) yield return rootGo;
       // Get the number of children of the scene root GameObject.
       var childCount = rootGo.transform.childCount;
 
       for (var i = 0; i < childCount; i++) {
         var childGo = rootGo.transform.GetChild(i).gameObject;
-        if (childGo.name == name) gos.Add(childGo);
+        if (childGo.name == name) yield return childGo;
       }
     }
-
-    return gos;
   }
 
   public static IEnumerable<GameObject> GetChildGameObjects(this GameObject go) {
-    var childGos = new List<GameObject>();
-
     for (var i = 0; i < go.transform.childCount; i++) {
       var childGo = go.transform.GetChild(i).gameObject;
-      childGos.Add(childGo);
+      yield return childGo;
     }
-
-    return childGos;
   }
 
   /// <summary>

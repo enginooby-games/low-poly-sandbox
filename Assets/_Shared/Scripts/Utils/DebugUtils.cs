@@ -24,7 +24,6 @@ public static class DebugUtils {
 #endif
   }
 
-
   public static void Log([CanBeNull] this string value) {
 #if UNITY_EDITOR
     if (value is not null) Debug.Log(value);
@@ -32,6 +31,12 @@ public static class DebugUtils {
   }
 
   public static void Log<T>(this IEnumerable<T> list) where T : IFormattable {
+#if UNITY_EDITOR
+    foreach (var item in list) item.Log();
+#endif
+  }
+
+  public static void Log(this IEnumerable<string> list) {
 #if UNITY_EDITOR
     foreach (var item in list) item.Log();
 #endif

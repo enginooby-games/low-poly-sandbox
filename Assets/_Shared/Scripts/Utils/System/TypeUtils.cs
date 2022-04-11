@@ -82,11 +82,6 @@ public static class TypeUtils {
 
   public static IEnumerable<T> CreateInstancesOf<T>() where T : class {
     return GetConcreteTypesOf<T>().Select(type => Activator.CreateInstance(type) as T);
-
-    // var instances = new List<T>();
-    // GetConcreteTypesOf<T>().ForEach(type => { instances.Add(Activator.CreateInstance(type) as T); });
-    //
-    // return instances;
   }
 
   public static MethodInfo GetNonPublicMethod(this Type type, string methodName, Type paramType) {

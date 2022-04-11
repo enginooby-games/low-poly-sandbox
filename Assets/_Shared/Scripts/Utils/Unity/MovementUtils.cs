@@ -15,54 +15,57 @@ public static class MovementUtils {
   }
 
   /// <summary>Add world-space position Z to distance</summary>
-  public static void MoveZWorld(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.MoveZWorld(distance);
+  public static void MoveZWorld(this MonoBehaviour monoBehaviour, float speed = 1f) {
+    monoBehaviour.transform.MoveZWorld(speed);
   }
 
   /// <summary>Add world-space position X to distance</summary>
-  public static void MoveXWorld(this Transform transform, float distance = 1f) {
-    transform.Translate(v100 * Time.deltaTime * distance, Space.World);
+  public static void MoveXWorld(this Transform transform, float speed = 1f) {
+    transform.Translate(v100 * Time.deltaTime * speed, Space.World);
   }
 
   /// <summary>Add world-space position Y to distance</summary>
-  public static void MoveYWorld(this Transform transform, float distance = 1f) {
-    transform.Translate(v010 * Time.deltaTime * distance, Space.World);
+  public static void MoveYWorld(this Transform transform, float speed = 1f) {
+    transform.Translate(v010 * Time.deltaTime * speed, Space.World);
   }
 
-  /// <summary>Add world-space position Z to distance</summary>
-  public static void MoveZWorld(this Transform transform, float distance = 1f) {
-    transform.Translate(v001 * Time.deltaTime * distance, Space.World);
+  /// <summary>
+  /// Move along world blue z-axis
+  /// </summary>
+  /// <remarks>In-Update</remarks>
+  public static void MoveZWorld(this Transform transform, float speed = 1f) {
+    transform.Translate(v001 * Time.deltaTime * speed, Space.World);
   }
 
-  public static void MoveWorld(this MonoBehaviour monoBehaviour, Vector3 distances) {
-    monoBehaviour.transform.MoveWorld(distances);
+  public static void MoveWorld(this MonoBehaviour monoBehaviour, Vector3 speed) {
+    monoBehaviour.transform.MoveWorld(speed);
   }
 
-  public static void MoveWorld(this Transform transform, Vector3 distances) {
-    transform.MoveXWorld(distances.x);
-    transform.MoveYWorld(distances.y);
-    transform.MoveZWorld(distances.z);
+  public static void MoveWorld(this Transform transform, Vector3 speed) {
+    transform.MoveXWorld(speed.x);
+    transform.MoveYWorld(speed.y);
+    transform.MoveZWorld(speed.z);
   }
 
   /// <summary>
   ///   Translate on local X (included deltaTime).
   /// </summary>
-  public static void MoveX(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.MoveX(distance);
+  public static void MoveX(this MonoBehaviour monoBehaviour, float speed = 1f) {
+    monoBehaviour.transform.MoveX(speed);
   }
 
   /// <summary>
   ///   Translate on local Y (included deltaTime).
   /// </summary>
-  public static void MoveY(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.MoveY(distance);
+  public static void MoveY(this MonoBehaviour monoBehaviour, float speed = 1f) {
+    monoBehaviour.transform.MoveY(speed);
   }
 
   /// <summary>
   ///   Translate on local Z (included deltaTime).
   /// </summary>
-  public static void MoveZ(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.MoveZ(distance);
+  public static void MoveZ(this MonoBehaviour monoBehaviour, float speed = 1f) {
+    monoBehaviour.transform.MoveZ(speed);
   }
 
   public static void MoveXInBound(this MonoBehaviour monoBehaviour, float distance, Vector2 range) {

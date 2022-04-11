@@ -1,3 +1,4 @@
+using Enginooby.Prototype;
 using UnityEditor;
 using UnityEngine;
 #if ODIN_INSPECTOR
@@ -15,8 +16,9 @@ using Enginooby.Attribute;
 public class RigidbodyController : MonoBehaviourBase {
   private bool isOnGround = true;
   private Rigidbody rb;
+  private static GameManager GameManager => GameManager.Instance; // ! Singleton coupling
 
-  private void Start() {
+  protected override void Start() {
     rb = this.AddRigidBodyIfNotExist();
     anim = GetComponent<Animator>();
     InitForceAndTorque();
@@ -24,21 +26,21 @@ public class RigidbodyController : MonoBehaviourBase {
     SetGravity(gravityPercent);
   }
 
-  private void FixedUpdate() {
-    if (GameManager.Instance.gameOver) return;
+  protected override void FixedUpdate() {
+    if (GameManager.IsGameOver) return;
     if (enableJump) ProcessJump();
     if (enableVerticalMovement) ProcessVerticalMovement();
     if (enableHorizontalMovement) ProcessHorizontalMovement();
   }
 
-  private void LateUpdate() {
+  protected override void LateUpdate() {
     ConstraintMovements();
   }
 
   // TODO: Implement separate Collector/Collectable or Invertory system
   // ! Specific
   private void OnCollisionEnter(Collision other) {
-    if (GameManager.Instance.gameOver) return;
+    if (GameManager.IsGameOver) return;
 
     if (other.gameObject.CompareTag("Obstacle")) {
       Fall();
@@ -86,7 +88,7 @@ public class RigidbodyController : MonoBehaviourBase {
   private void Fall() {
     PlayFallAnimation();
     if (fallVfx) fallVfx.Play();
-    if (crashSfx) GameManager.Instance.audioSource.PlayOneShot(crashSfx);
+    if (crashSfx) AudioManager.Instance.PlayOneShot(crashSfx);
     if (runningVfx) runningVfx.Stop();
   }
 
@@ -155,7 +157,7 @@ public class RigidbodyController : MonoBehaviourBase {
     if (!CanJump) return;
 
     PlayJumpAnimation();
-    if (jumpSfx) GameManager.Instance.audioSource.PlayOneShot(jumpSfx);
+    if (jumpSfx) AudioManager.Instance.PlayOneShot(jumpSfx);
     if (runningVfx) runningVfx.Stop();
     rb.AddForce(Vector3.up * jumpForce, jumpForceMode);
     jumpCount++;
