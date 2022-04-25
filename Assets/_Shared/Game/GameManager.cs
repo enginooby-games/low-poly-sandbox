@@ -1,6 +1,7 @@
 // Comment out to switch to tab view
 // #define VIEW_FOLDOUT
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Event = Enginooby.Core.Event;
@@ -18,6 +19,12 @@ namespace Enginooby.Prototype {
   /// </summary>
   public class GameManager : MonoBehaviourSingleton<GameManager> {
     protected override bool IsPersistent => false;
+
+    private void OnDestroy() {
+      OnGameLoaded.RemoveListeners();
+      OnGameStarted.RemoveListeners();
+      OnGameOver.RemoveListeners();
+    }
 
     // ===================================================================================================================
 
@@ -55,7 +62,9 @@ namespace Enginooby.Prototype {
     /// <summary>
     /// Before game start, usually for main scene.
     /// </summary>
-    private void LoadGame() { }
+    private void LoadGame() {
+      AudioManager.Instance.OnGameLoaded();
+    }
 
     #endregion
 

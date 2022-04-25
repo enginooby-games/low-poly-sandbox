@@ -2,6 +2,8 @@
 // ? Make generic for int/float...
 // ? Create subclasses (or Bridge pattern) for: StatWithEvent, StatWithUI, StatWithEventAndUI, Stat (w/o event, UI)
 // ? Partial classes
+// ? Rename to EnhancedInt/Float/Variable
+// TODO: Cooldown time to prevent updating continuously (e.g., lose multiple lives when touch many obstacles at the same time)
 
 using System;
 using System.Collections;
@@ -16,10 +18,15 @@ using Sirenix.OdinInspector;
 using Enginooby.Attribute;
 #endif
 
-// TODO: Cooldown time to prevent updating continuously (e.g., lose multiple lives when touch many obstacles at the same time)
+// TODO: Rename to ExtendedInt (Stats is different: strength, defense...)
+/// <summary>
+/// Wrapper for primitive types, min/max, events & UIs
+/// </summary>
 [Serializable]
 [InlineProperty]
 public class Stat {
+  public static implicit operator int(Stat stat) => stat.CurrentValue;
+
   private const float LabelWidth1 = 80f;
   [HideInInspector] public string statName;
 
@@ -51,7 +58,6 @@ public class Stat {
     InitialValue = initialValue;
     CurrentValue = initialValue;
     // this.ui.statName = statName;
-    UIs.ForEach(ui => ui.prefix = this.statName + ": ");
   }
 
   // REFACTOR
@@ -60,7 +66,6 @@ public class Stat {
     InitialValue = initialValue;
     CurrentValue = initialValue;
     // this.ui.statName = statName;
-    UIs.ForEach(ui => ui.prefix = this.statName + ": ");
   }
 
   // ===================================================================================================================
@@ -102,9 +107,9 @@ public class Stat {
   [PropertySpace(SpaceAfter = 10, SpaceBefore = 0)]
   public int MaxValue = 100;
 
-  private bool IsMinEnabled() => Enable && EnableMin;
-  private bool IsMaxEnabled() => Enable && EnableMax;
-  private bool IsMaxDisabled() => Enable && !EnableMax;
+  private bool IsMinEnabled => Enable && EnableMin;
+  private bool IsMaxEnabled => Enable && EnableMax;
+  private bool IsMaxDisabled => Enable && !EnableMax;
 
   #endregion
 
@@ -135,6 +140,10 @@ public class Stat {
     UIs.ForEach(ui => ui.Update(currentValue, maxValue, minValue));
   }
 
+  public void DestroyUIs() {
+    UIs.ForEach(ui => ui.Destroy());
+  }
+
   #endregion
 
   // ===================================================================================================================
@@ -150,10 +159,10 @@ public class Stat {
   [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
   public Event OnDecreased = new(nameof(OnDecreased));
 
-  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
+  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(EnableMin))] [HideLabel]
   public Event OnMin = new(nameof(OnMin));
 
-  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
+  [FoldoutGroup("$statName/Events")] [ShowIf(nameof(EnableMax))] [HideLabel]
   public Event OnMax = new(nameof(OnMax));
 
   [FoldoutGroup("$statName/Events")] [ShowIf(nameof(Enable))] [HideLabel]
@@ -168,13 +177,16 @@ public class Stat {
 
   private void InvokeEventsOnChanged(int oldValue) {
     OnChanged?.Invoke();
-    OnIncreased?.Invoke(@if: CurrentValue > oldValue);
-    OnDecreased?.Invoke(@if: CurrentValue < oldValue);
-    OnZero?.Invoke(@if: CurrentValue == 0);
-    OnMin?.Invoke(@if: EnableMin && CurrentValue <= MinValue);
-    OnMax?.Invoke(@if: EnableMax && CurrentValue >= MaxValue);
+    OnIncreased?.Invoke(CurrentValue > oldValue);
+    OnDecreased?.Invoke(CurrentValue < oldValue);
+    OnZero?.Invoke(CurrentValue == 0);
+    OnMin?.Invoke(EnableMin && CurrentValue <= MinValue);
+    OnMax?.Invoke(EnableMax && CurrentValue >= MaxValue);
   }
 
+  /// <summary>
+  /// Remove all listeners of all events associated with this variable (OnChanged, OnIncreased, etc.)
+  /// </summary>
   public void RemoveEventListeners() {
     OnChanged.RemoveListeners();
     OnIncreased.RemoveListeners();
@@ -210,7 +222,7 @@ public class Stat {
 
   public void SetMin() => Set(MinValue);
   public void SetMax() => Set(MaxValue);
-  
+
   /// <summary>
   /// Set to initial value without invoking events.
   /// </summary>
@@ -232,7 +244,6 @@ public class Stat {
     // clamp in min max range
     if (EnableMin && value < MinValue) value = MinValue;
     if (EnableMax && value > MaxValue) value = MaxValue;
-
     if (value == CurrentValue) return;
 
     var oldValue = CurrentValue;

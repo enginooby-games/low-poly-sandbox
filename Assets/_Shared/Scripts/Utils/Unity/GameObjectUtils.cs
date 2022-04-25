@@ -53,10 +53,12 @@ public static class GameObjectUtils {
   ///   DestroyImmediate if in Edit Mode.
   /// </summary>
   public static void Destroy(this GameObject go) {
-    if (Application.isPlaying)
+    if (Application.isPlaying) {
       Object.Destroy(go);
-    else
+    }
+    else {
       Object.DestroyImmediate(go);
+    }
   }
 
   public static void Destroy(this GameObject go, bool @if) {
@@ -99,8 +101,10 @@ public static class GameObjectUtils {
     var nearestGoIndex = 0;
     var currentMinDist = Mathf.Infinity;
 
-    for (var i = 0; i < gos.Count(); i++) {
-      var go = gos.ElementAt(i);
+    var gameObjects = gos as GameObject[] ?? gos.ToArray();
+
+    for (var i = 0; i < gameObjects.Count(); i++) {
+      var go = gameObjects.ElementAt(i);
       var distToPos = go.transform.GetDistanceTo(pos);
       if (distToPos < currentMinDist) {
         currentMinDist = distToPos;
@@ -108,7 +112,7 @@ public static class GameObjectUtils {
       }
     }
 
-    return gos.ElementAt(nearestGoIndex);
+    return gameObjects.ElementAt(nearestGoIndex);
   }
 
   /// <summary>

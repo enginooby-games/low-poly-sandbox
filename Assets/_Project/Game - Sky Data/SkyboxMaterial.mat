@@ -2,16 +2,28 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SkyboxMaterial
   m_Shader: {fileID: 4800000, guid: a449307a7b4cccf45b5b0e8cc47be915, type: 3}
-  m_ShaderKeywords: CLOUDS CUBEMAP_CLOUD_FORMAT_RGBA CUBEMAP_NORMAL_CLOUDS GRADIENT_BACKGROUND
-    HORIZON_FOG STAR_LAYER_1 STAR_LAYER_2 STAR_LAYER_3 SUN SUN_ALPHA_BLEND SUN_CUSTOM_TEXTURE
-    SUN_SPRITE_SHEET
+  m_ValidKeywords:
+  - CLOUDS
+  - CUBEMAP_CLOUD_FORMAT_RGBA
+  - CUBEMAP_NORMAL_CLOUDS
+  - GRADIENT_BACKGROUND
+  - HORIZON_FOG
+  - STAR_LAYER_1
+  - STAR_LAYER_2
+  - STAR_LAYER_3
+  - SUN
+  - SUN_ALPHA_BLEND
+  - SUN_CUSTOM_TEXTURE
+  - SUN_SPRITE_SHEET
+  m_InvalidKeywords:
+  - SUN_ROTATION
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

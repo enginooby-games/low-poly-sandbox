@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static VectorUtils;
 
@@ -17,6 +18,24 @@ public static class TransformUtils {
   /// </summary>
   public static void DestroyChildren(this Transform transform) {
     transform.gameObject.GetComponentsInChildrenOnly<Transform>().DestroyGameObjects();
+  }
+
+  //Breadth-first search
+  public static Transform FindDeepChild(this Transform transform, string childName) {
+    var queue = new Queue<Transform>();
+    queue.Enqueue(transform);
+    while (queue.Count > 0) {
+      var c = queue.Dequeue();
+      if (c.name == childName) {
+        return c;
+      }
+
+      foreach (Transform t in c) {
+        queue.Enqueue(t);
+      }
+    }
+
+    return null;
   }
 
   public static float GetDistanceTo(this Transform transform, Vector3 pos) => transform.position.GetDistanceTo(pos);
@@ -41,6 +60,16 @@ public static class TransformUtils {
   /// </summary>
   public static void SetRotation(this Transform transform, float x, float y, float z) {
     transform.rotation = Quaternion.Euler(x, y, z);
+  }
+
+  /// <summary>
+  ///  Turn to the given target over time.
+  /// </summary>
+  /// <remarks>In-update method</remarks>
+  public static void TurnTo(this Transform transform, Vector3 dest, float speed, bool freezeY = true) {
+    var dirToTarget = (dest - transform.position).normalized;
+    var lookRotation = freezeY ? Quaternion.LookRotation(dirToTarget.WithY(0)) : Quaternion.LookRotation(dirToTarget);
+    transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * speed);
   }
 
   #endregion
@@ -237,16 +266,18 @@ public static class TransformUtils {
     Vector3 targetPosition,
     float delta) {
     if (Time.timeScale == 0 || float.IsNaN(delta) || float.IsInfinity(delta) || delta == 0 ||
-        pastPosition == Vector3.zero || pastTargetPosition == Vector3.zero || targetPosition == Vector3.zero)
+        pastPosition == Vector3.zero || pastTargetPosition == Vector3.zero || targetPosition == Vector3.zero) {
       return;
+    }
 
     var t = Time.deltaTime * delta + .00001f;
     var v = (targetPosition - pastTargetPosition) / t;
     var f = pastPosition - pastTargetPosition + v;
     var l = targetPosition - v + f * Mathf.Exp(-t);
 
-    if (l != Vector3.negativeInfinity && l != Vector3.positiveInfinity && l != Vector3.zero)
+    if (l != Vector3.negativeInfinity && l != Vector3.positiveInfinity && l != Vector3.zero) {
       transform.position = l;
+    }
   }
 
   #endregion

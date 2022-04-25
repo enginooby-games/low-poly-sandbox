@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Enginooby.Audio;
 using Enginooby.Utils;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Enginooby.Prototype {
@@ -41,17 +40,11 @@ namespace Enginooby.Prototype {
       _musicSource = gameObject.AddComponent<AudioSource>();
       _sfxSource = gameObject.AddComponent<AudioSource>();
       _musicSource.clip = _backgroundMusic;
+      _musicSource.loop = true;
+      _musicSource.Play();
     }
 
-    private void OnEnable() {
-      GameManager.Instance.OnGameLoaded += OnGameLoaded;
-    }
-
-    private void OnDisable() {
-      GameManager.Instance.OnGameLoaded -= OnGameLoaded;
-    }
-
-    private void OnGameLoaded() {
+    public void OnGameLoaded() {
       if (_backgroundMusic) _musicSource.Play();
     }
 
